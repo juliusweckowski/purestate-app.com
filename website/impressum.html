@@ -7,6 +7,7 @@
 <meta name="robots" content="noindex" />
 <meta name="description" content="Impressum für Purestate." />
 <link rel="canonical" href="https://purestate-app.com/impressum.html" />
+<link rel="icon" href="assets/purestate-logo-icon.svg" type="image/svg+xml" />
 <style>
   :root {
     --bg: #f5f7fb;
@@ -55,17 +56,8 @@
   .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
   .nav { min-height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
   .brand { display: flex; align-items: center; gap: 11px; color: var(--text); font-size: 19px; font-weight: 750; text-decoration: none; }
-  .logo {
-    width: 30px; height: 30px; border-radius: 8px;
-    background: linear-gradient(150deg, #3b82f6 0%, #2563eb 100%);
-    position: relative;
-    box-shadow: 0 4px 12px -4px #2563eb;
-  }
-  .logo::after {
-    content: ""; position: absolute; inset: 8px 8px auto 8px; height: 14px;
-    border: 2.5px solid #fff; border-radius: 50%;
-    clip-path: inset(0 0 6px 0);
-  }
+  .logo-mark { width: 32px; height: 32px; flex: none; display: block; }
+  @media (prefers-color-scheme: dark) { .logo-mark { filter: brightness(1.35) saturate(1.08); } }
   main { padding: 56px 0 72px; }
   .kicker { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
   h1 { margin: 10px 0 16px; font-size: clamp(32px, 6vw, 48px); line-height: 1.12; letter-spacing: -0.02em; }
@@ -100,7 +92,7 @@
 <body>
 <header>
   <div class="wrap nav">
-    <a class="brand" href="index.html"><span class="logo" aria-hidden="true"></span> Purestate</a>
+    <a class="brand" href="index.html"><img class="logo-mark" src="assets/purestate-logo-icon.svg" alt="" aria-hidden="true" /> Purestate</a>
     <a href="datenschutz.html">Datenschutz</a>
   </div>
 </header>

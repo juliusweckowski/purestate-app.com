@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Purestate">
+  <defs>
+    <linearGradient id="purestate-right" x1="72" y1="16" x2="111" y2="112" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#49c3bd"/>
+      <stop offset="1" stop-color="#2aa8a6"/>
+    </linearGradient>
+  </defs>
+  <path d="M56 18 22 34v27c0 25 13.5 45 34 56" fill="none" stroke="#123456" stroke-width="11.5" stroke-linecap="butt" stroke-linejoin="miter"/>
+  <path d="M72 18 106 34v27c0 25-13.5 45-34 56" fill="none" stroke="url(#purestate-right)" stroke-width="11.5" stroke-linecap="butt" stroke-linejoin="miter"/>
+  <rect x="48" y="51" width="12" height="34" rx="3.5" fill="#0b1b34"/>
+  <rect x="68" y="51" width="12" height="34" rx="3.5" fill="#0b1b34"/>
+</svg>

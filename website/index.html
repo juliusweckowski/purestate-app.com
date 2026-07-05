@@ -11,6 +11,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://purestate-app.com/" />
 <meta name="twitter:card" content="summary" />
+<link rel="icon" href="assets/purestate-logo-icon.svg" type="image/svg+xml" />
 <style>
   :root {
     --navy-900: #0b1b34;
@@ -93,17 +94,10 @@
   }
   .nav { display: flex; align-items: center; justify-content: space-between; height: 66px; }
   .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; font-size: 19px; letter-spacing: -0.02em; }
-  .logo {
-    width: 30px; height: 30px; border-radius: 8px; flex: none;
-    background: linear-gradient(150deg, var(--accent) 0%, var(--accent-strong) 100%);
-    position: relative;
-    box-shadow: 0 4px 12px -4px var(--accent-strong);
-  }
-  .logo::after {
-    content: ""; position: absolute; inset: 8px 8px auto 8px; height: 14px;
-    border: 2.5px solid #fff; border-radius: 50%;
-    clip-path: inset(0 0 6px 0);
-  }
+  .logo-mark { width: 32px; height: 32px; flex: none; display: block; }
+  @media (prefers-color-scheme: dark) { .logo-mark { filter: brightness(1.35) saturate(1.08); } }
+  :root[data-theme="dark"] .logo-mark { filter: brightness(1.35) saturate(1.08); }
+  :root[data-theme="light"] .logo-mark { filter: none; }
   .nav-links { display: flex; align-items: center; gap: 30px; }
   .nav-links a { color: var(--text-soft); font-size: 15px; font-weight: 500; transition: color .15s; }
   .nav-links a:hover { color: var(--text); }
@@ -261,7 +255,7 @@
 <body>
 <header>
   <div class="wrap nav">
-    <div class="brand"><span class="logo" aria-hidden="true"></span> Purestate</div>
+    <div class="brand"><img class="logo-mark" src="assets/purestate-logo-icon.svg" alt="" aria-hidden="true" /> Purestate</div>
     <nav class="nav-links">
       <a href="#features">Funktionen</a>
       <a href="#how">So funktioniert's</a>
@@ -471,7 +465,7 @@
 
 <footer>
   <div class="wrap foot">
-    <div class="brand"><span class="logo" aria-hidden="true"></span> Purestate</div>
+    <div class="brand"><img class="logo-mark" src="assets/purestate-logo-icon.svg" alt="" aria-hidden="true" /> Purestate</div>
     <div class="foot-links">
       <a href="#features">Funktionen</a>
       <a href="#how">So funktioniert's</a>

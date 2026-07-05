@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Datenschutzerklärung - Purestate</title>
+<meta name="description" content="Datenschutzerklärung für die Purestate Windows-App und die Purestate Companion Browser-Erweiterung." />
+<link rel="canonical" href="https://purestate-app.com/datenschutz.html" />
+<style>
+  :root {
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --surface-2: #eef2f8;
+    --border: #dce3ee;
+    --text: #10192b;
+    --text-soft: #4a5769;
+    --accent: #2563eb;
+    --maxw: 880px;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #070f1f;
+      --surface: #0e1a30;
+      --surface-2: #122241;
+      --border: #1e3153;
+      --text: #eef3fb;
+      --text-soft: #a9b6cb;
+      --accent: #7fb0ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  a:hover { text-decoration: underline; }
+  header {
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+  }
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+  .nav { min-height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+  .brand { display: flex; align-items: center; gap: 11px; color: var(--text); font-size: 19px; font-weight: 750; text-decoration: none; }
+  .logo {
+    width: 30px; height: 30px; border-radius: 8px;
+    background: linear-gradient(150deg, #3b82f6 0%, #2563eb 100%);
+    position: relative;
+    box-shadow: 0 4px 12px -4px #2563eb;
+  }
+  .logo::after {
+    content: ""; position: absolute; inset: 8px 8px auto 8px; height: 14px;
+    border: 2.5px solid #fff; border-radius: 50%;
+    clip-path: inset(0 0 6px 0);
+  }
+  main { padding: 56px 0 72px; }
+  .intro { margin-bottom: 36px; }
+  .kicker { color: var(--accent); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+  h1 { margin: 10px 0 16px; font-size: clamp(32px, 6vw, 48px); line-height: 1.12; letter-spacing: -0.02em; }
+  h2 { margin: 34px 0 10px; font-size: 23px; line-height: 1.25; letter-spacing: -0.01em; }
+  h3 { margin: 24px 0 8px; font-size: 18px; }
+  p, li { color: var(--text-soft); }
+  p { margin: 0 0 14px; }
+  ul { margin: 10px 0 18px; padding-left: 22px; }
+  code {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1px 5px;
+    color: var(--text);
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 26px;
+    margin: 20px 0;
+  }
+  .note {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 22px 0;
+  }
+  footer { border-top: 1px solid var(--border); padding: 32px 0; color: var(--text-soft); font-size: 14px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="index.html"><span class="logo" aria-hidden="true"></span> Purestate</a>
+    <a href="impressum.html">Impressum</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="intro">
+      <div class="kicker">Datenschutz</div>
+      <h1>Datenschutzerklärung Purestate</h1>
+      <p>Stand: 2026-07-03. Diese Erklärung gilt für die Windows-App <strong>Purestate</strong> und die Browser-Erweiterung <strong>Purestate Companion</strong> zusammen.</p>
+    </section>
+
+    <section class="card">
+      <h2>Verantwortlicher</h2>
+      <p>Julius Weckowski<br />
+      E-Mail: <a href="mailto:julius.weckowski@gmx.de">julius.weckowski@gmx.de</a></p>
+    </section>
+
+    <section>
+      <h2>Kurzfassung</h2>
+      <p>Purestate verarbeitet Daten grundsätzlich lokal auf deinem Gerät. Es gibt keinen Purestate-Server, an den Surfverlauf, Inhalte oder Einstellungen übertragen werden. Ausnahmen sind gezielte Abfragen der öffentlichen APIs von Reddit und Bluesky zur Inhaltsprüfung. Dabei werden keine Inhalte hochgeladen, sondern nur Beitrags- oder Community-Kennungen abgefragt, die auf der Seite ohnehin sichtbar sind.</p>
+      <p>Purestate ist ein freiwilliges Selbstbeschränkungs-Werkzeug: eine Windows-App plus eine Browser-Erweiterung, die pornografische oder erwachsene Inhalte blockiert beziehungsweise ausblendet. Die Nutzung ist freiwillig.</p>
+    </section>
+
+    <section>
+      <h2>Welche Daten lokal verarbeitet werden</h2>
+      <p>Purestate speichert lokal unter <code>C:\ProgramData\Purestate</code>:</p>
+      <ul>
+        <li>Konfiguration, zum Beispiel aktivierte Schutzarten, Zeitplan und DNS-Profil</li>
+        <li>Passwort-Hash mit Salt, nicht das Passwort im Klartext</li>
+        <li>optionaler Passwort-Hinweis, falls du einen eingibst</li>
+        <li>eigene Sperrlisten- und Allowlist-Einträge</li>
+        <li>Sicherheitsprotokoll mit Zeitpunkten und Aktionsnamen wie „Passwort akzeptiert“, „Pausiert“ oder „Reparatur“</li>
+      </ul>
+      <p>Das Sicherheitsprotokoll enthält keine Passwörter, keine besuchten Webseiten und keine Seiteninhalte. Es gibt keine Cloud-Synchronisierung, kein Konto und keine Telemetrie oder Analytics.</p>
+    </section>
+
+    <section>
+      <h2>Was die Browser-Erweiterung liest</h2>
+      <p>Auf den im Manifest gelisteten Webseiten liest die Erweiterung die Adresse der aktuell geöffneten Seite, sichtbare Kennzeichnungen, Texte, Verknüpfungen und öffentliche Beitrags-, Community- oder Profil-Kennungen. Das dient dazu, erwachsene Markierungen, Tags, Konto-Einstellungen oder Suchbegriffe zu erkennen und entsprechend zu blockieren oder auszublenden.</p>
+      <p>Unterstützt werden insbesondere Reddit, X/Twitter, Bluesky, Tumblr, DeviantArt, pixiv, Newgrounds, Imgur, Instagram, TikTok, Pinterest sowie gelistete Such-, Video- und Tag-Seiten wie Google, Bing, DuckDuckGo, Brave Search, Yahoo, Yandex, Ecosia, Startpage, Qwant, MetaGer, YouTube und Giphy.</p>
+      <p>Bei Such-, Video- und Tag-Seiten werden nur die Suchbegriffe oder Tags aus der aktuellen URL lokal gegen eine Regelliste geprüft. Zwischenergebnisse werden nur im Arbeitsspeicher der Erweiterung gehalten und nicht dauerhaft als Browserverlauf gespeichert.</p>
+    </section>
+
+    <section>
+      <h2>Ausnahmen: Reddit und Bluesky</h2>
+      <p>Für Reddit und Bluesky nutzt die Erweiterung öffentliche Plattform-APIs, weil die benötigten Informationen nicht immer zuverlässig direkt aus der sichtbaren Seite auslesbar sind.</p>
+      <ul>
+        <li><strong>Reddit:</strong> Die Erweiterung fragt Reddits eigene JSON-API ab, zum Beispiel Beitrags- oder Subreddit-Metadaten wie den NSFW-Status. Diese Abfrage erfolgt mit deiner angemeldeten Reddit-Sitzung wie ein normaler Seitenaufruf. Übertragen werden nur sichtbare Beitrags-IDs oder Subreddit-Namen, keine Texte, Bilder oder Videos.</li>
+        <li><strong>Bluesky:</strong> Die Erweiterung fragt die öffentliche, nicht angemeldete Bluesky-API mit der sichtbaren Beitrags-ID oder dem Profilnamen ab.</li>
+      </ul>
+      <p>Beide Abfragen laufen direkt zwischen deinem Browser und der jeweiligen Plattform. Sie laufen nicht über einen Purestate-Server und werden von Purestate nicht gespeichert oder protokolliert.</p>
+      <p>X/Twitter ist ein Sonderfall: Die Erweiterung stellt keine eigenen X-Anfragen, sondern liest nur Antworten mit, die X/Twitter beim normalen Ansehen der Seite selbst ohnehin von seinen Servern abruft.</p>
+    </section>
+
+    <section>
+      <h2>Native Messaging</h2>
+      <p>Die Erweiterung kommuniziert über Chromes Native-Messaging-Schnittstelle mit dem lokal installierten Purestate-Windows-Dienst. Dadurch kann sie prüfen, ob der Schutz aktiv ist, lokale Zusatzregeln laden und Browsername sowie installierte Purestate-Version übermitteln. Diese Kommunikation bleibt vollständig auf deinem Gerät.</p>
+    </section>
+
+    <section>
+      <h2>Weitergabe an Dritte</h2>
+      <p>Purestate verkauft keine Nutzerdaten, erstellt keine Tracking- oder Bonitätsprofile und zeigt keine Werbung. Familien-DNS-Anbieter wie Cloudflare Family, CleanBrowsing Family oder OpenDNS FamilyShield sehen als DNS-Resolver technisch bedingt die von deinem Gerät angefragten Domainnamen. Das ist eine Funktion des von dir gewählten DNS-Anbieters, nicht eines Purestate-Servers.</p>
+    </section>
+
+    <section>
+      <h2>Backups</h2>
+      <p>Backups enthalten deine Einstellungen und eigenen Sperrlisten- oder Allowlist-Einträge, aber kein Klartext-Passwort. Backups verlassen dein Gerät nur, wenn du die Backup-Datei selbst weitergibst oder kopierst.</p>
+    </section>
+
+    <section>
+      <h2>Rechtsgrundlage und deine Rechte</h2>
+      <p>Die Verarbeitung erfolgt zur Erfüllung des von dir gewählten Zwecks der freiwilligen Selbstbeschränkung und beruht auf deiner freiwilligen Installation und Nutzung. Die Reddit- und Bluesky-Abfragen laufen direkt zwischen deinem Browser und der jeweiligen Plattform; dafür gelten zusätzlich deren eigene Datenschutzbestimmungen.</p>
+      <p>Da Purestate keine Daten an den Verantwortlichen übermittelt und keine serverseitige Verarbeitung stattfindet, bestehen keine beim Verantwortlichen gespeicherten Nutzungsdaten, auf die sich Auskunfts-, Löschungs- oder Widerspruchsrechte praktisch beziehen könnten. Lokal gespeicherte Daten kannst du über die App oder durch Deinstallation löschen.</p>
+    </section>
+
+    <section>
+      <h2>Änderungen und Kontakt</h2>
+      <p>Diese Erklärung wird bei relevanten Änderungen der Datenverarbeitung aktualisiert. Bei Fragen erreichst du den Verantwortlichen per E-Mail an <a href="mailto:julius.weckowski@gmx.de">julius.weckowski@gmx.de</a>.</p>
+      <div class="note">
+        <p>Hinweis: Diese Seite ersetzt keine individuelle Rechtsberatung. Vor einem breiten öffentlichen Launch sollten der finale Text rechtlich geprüft und die Anbieterangaben im Impressum ausdrücklich bestätigt werden.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year">2026</span> Purestate · <a href="index.html">Startseite</a> · <a href="impressum.html">Impressum</a></div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

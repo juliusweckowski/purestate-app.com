@@ -1,496 +1,230 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#0b1b34" />
-<title>Purestate – Freiwillige Selbstbeschränkung für ein klareres Netz</title>
-<meta name="description" content="Purestate ist eine lokale Windows-App mit Browser-Begleiter, die pornografische und erwachsene Inhalte blockiert – auf Webseiten, gemischten Plattformen und in Suchmaschinen. Lokal, ohne Konto, ohne Cloud." />
-<link rel="canonical" href="https://purestate-app.com/" />
-<meta property="og:title" content="Purestate – Freiwillige Selbstbeschränkung für ein klareres Netz" />
-<meta property="og:description" content="Lokale Windows-App mit Browser-Begleiter gegen erwachsene Inhalte. Ohne Konto, ohne Cloud, ohne Tracking." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://purestate-app.com/" />
-<meta name="twitter:card" content="summary" />
-<link rel="icon" href="assets/purestate-logo-icon.svg" type="image/svg+xml" />
-<style>
-  :root {
-    --navy-900: #0b1b34;
-    --navy-800: #0f2547;
-    --navy-700: #163257;
-    --accent: #3b82f6;
-    --accent-strong: #2563eb;
-    --accent-soft: rgba(59, 130, 246, 0.12);
-    --bg: #f5f7fb;
-    --surface: #ffffff;
-    --surface-2: #eef2f8;
-    --border: #dce3ee;
-    --text: #10192b;
-    --text-soft: #4a5769;
-    --text-faint: #6b7789;
-    --success: #1f9d6b;
-    --radius: 14px;
-    --radius-sm: 9px;
-    --maxw: 1120px;
-    --shadow: 0 1px 2px rgba(16, 25, 43, 0.05), 0 12px 32px -18px rgba(16, 25, 43, 0.25);
-    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #070f1f;
-      --surface: #0e1a30;
-      --surface-2: #122241;
-      --border: #1e3153;
-      --text: #eef3fb;
-      --text-soft: #a9b6cb;
-      --text-faint: #7f8da4;
-      --accent-soft: rgba(59, 130, 246, 0.18);
-      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 40px -20px rgba(0, 0, 0, 0.7);
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #070f1f;
-    --surface: #0e1a30;
-    --surface-2: #122241;
-    --border: #1e3153;
-    --text: #eef3fb;
-    --text-soft: #a9b6cb;
-    --text-faint: #7f8da4;
-    --accent-soft: rgba(59, 130, 246, 0.18);
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 40px -20px rgba(0, 0, 0, 0.7);
-  }
-  :root[data-theme="light"] {
-    --bg: #f5f7fb;
-    --surface: #ffffff;
-    --surface-2: #eef2f8;
-    --border: #dce3ee;
-    --text: #10192b;
-    --text-soft: #4a5769;
-    --text-faint: #6b7789;
-    --accent-soft: rgba(59, 130, 246, 0.12);
-    --shadow: 0 1px 2px rgba(16, 25, 43, 0.05), 0 12px 32px -18px rgba(16, 25, 43, 0.25);
-  }
-
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; text-decoration: none; }
-  h1, h2, h3 { line-height: 1.2; letter-spacing: -0.02em; margin: 0; }
-  p { margin: 0; }
-  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
-
-  /* Header */
-  header {
-    position: sticky; top: 0; z-index: 50;
-    background: color-mix(in srgb, var(--bg) 82%, transparent);
-    backdrop-filter: saturate(180%) blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav { display: flex; align-items: center; justify-content: space-between; height: 66px; }
-  .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; font-size: 19px; letter-spacing: -0.02em; }
-  .logo-mark { width: 32px; height: 32px; flex: none; display: block; }
-  @media (prefers-color-scheme: dark) { .logo-mark { filter: brightness(1.35) saturate(1.08); } }
-  :root[data-theme="dark"] .logo-mark { filter: brightness(1.35) saturate(1.08); }
-  :root[data-theme="light"] .logo-mark { filter: none; }
-  .nav-links { display: flex; align-items: center; gap: 30px; }
-  .nav-links a { color: var(--text-soft); font-size: 15px; font-weight: 500; transition: color .15s; }
-  .nav-links a:hover { color: var(--text); }
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-    font-family: var(--font); font-size: 15px; font-weight: 600; cursor: pointer;
-    padding: 11px 20px; border-radius: var(--radius-sm); border: 1px solid transparent;
-    transition: transform .12s ease, background .15s, border-color .15s;
-  }
-  .btn-primary { background: var(--accent-strong); color: #fff; box-shadow: 0 8px 20px -10px var(--accent-strong); }
-  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
-  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
-  .btn-ghost:hover { background: var(--surface-2); }
-  .nav .btn { padding: 9px 18px; }
-  @media (max-width: 760px) { .nav-links a:not(.btn) { display: none; } }
-
-  /* Hero */
-  .hero { position: relative; overflow: hidden; padding: 88px 0 72px; }
-  .hero::before {
-    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background:
-      radial-gradient(700px 340px at 78% -8%, var(--accent-soft), transparent 70%),
-      radial-gradient(560px 300px at 8% 8%, var(--accent-soft), transparent 72%);
-  }
-  .hero .wrap { position: relative; z-index: 1; }
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--surface); border: 1px solid var(--border);
-    color: var(--text-soft); font-size: 13px; font-weight: 600;
-    padding: 6px 13px; border-radius: 999px; margin-bottom: 24px;
-  }
-  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--success); box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 22%, transparent); }
-  .hero h1 { font-size: clamp(34px, 6vw, 60px); font-weight: 800; max-width: 16ch; }
-  .hero h1 .grad {
-    background: linear-gradient(120deg, var(--accent) 0%, var(--accent-strong) 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .hero .lead { margin-top: 22px; font-size: clamp(17px, 2.2vw, 20px); color: var(--text-soft); max-width: 60ch; }
-  .hero-cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
-  .hero-note { margin-top: 18px; font-size: 13.5px; color: var(--text-faint); }
-
-  .trust {
-    margin-top: 54px; display: flex; flex-wrap: wrap; gap: 10px 26px;
-    padding-top: 26px; border-top: 1px solid var(--border);
-  }
-  .trust span { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-soft); font-weight: 500; }
-  .trust svg { flex: none; color: var(--accent); }
-
-  /* Sections */
-  section { padding: 80px 0; }
-  .section-head { max-width: 62ch; margin-bottom: 44px; }
-  .kicker { color: var(--accent-strong); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
-  .section-head h2 { font-size: clamp(26px, 4vw, 38px); font-weight: 800; margin-top: 12px; }
-  .section-head p { margin-top: 16px; font-size: 17px; color: var(--text-soft); }
-
-  /* Feature grid */
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
-  .card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow);
-    transition: transform .15s ease, border-color .15s;
-  }
-  .card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
-  .ic {
-    width: 44px; height: 44px; border-radius: 11px; display: grid; place-items: center;
-    background: var(--accent-soft); color: var(--accent-strong); margin-bottom: 18px;
-  }
-  .card h3 { font-size: 18px; font-weight: 700; }
-  .card p { margin-top: 9px; font-size: 15px; color: var(--text-soft); }
-
-  /* Supported sites */
-  .sites-band { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
-  .chip {
-    background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
-    font-size: 14.5px; font-weight: 600; padding: 9px 16px; border-radius: 999px;
-  }
-  .chip.more { background: var(--accent-soft); border-color: transparent; color: var(--accent-strong); }
-
-  /* Steps */
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; counter-reset: step; }
-  @media (max-width: 780px) { .steps { grid-template-columns: 1fr; } }
-  .step { position: relative; padding: 28px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
-  .step .num {
-    width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center;
-    background: var(--navy-800); color: #fff; font-weight: 700; font-size: 16px; margin-bottom: 16px;
-  }
-  @media (prefers-color-scheme: dark) { .step .num { background: var(--accent-strong); } }
-  :root[data-theme="dark"] .step .num { background: var(--accent-strong); }
-  .step h3 { font-size: 17px; font-weight: 700; }
-  .step p { margin-top: 8px; font-size: 15px; color: var(--text-soft); }
-
-  /* Privacy callout */
-  .callout {
-    background: linear-gradient(150deg, var(--navy-800), var(--navy-900));
-    border-radius: 20px; padding: 48px; color: #eaf1fb; position: relative; overflow: hidden;
-    border: 1px solid var(--navy-700);
-  }
-  .callout::before {
-    content: ""; position: absolute; inset: 0; pointer-events: none;
-    background: radial-gradient(500px 260px at 88% 0%, rgba(59,130,246,0.28), transparent 70%);
-  }
-  .callout > * { position: relative; }
-  .callout h2 { font-size: clamp(24px, 3.4vw, 32px); font-weight: 800; max-width: 22ch; }
-  .callout p { margin-top: 16px; color: #b9c7dd; font-size: 16px; max-width: 64ch; }
-  .callout .facts { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px 28px; }
-  .callout .facts span { display: inline-flex; align-items: center; gap: 9px; font-size: 14.5px; color: #dbe6f5; font-weight: 500; }
-  .callout .facts svg { color: #7fb0ff; flex: none; }
-
-  /* CTA / Beta */
-  .beta { text-align: center; }
-  .beta .box {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
-    padding: 52px 32px; box-shadow: var(--shadow); max-width: 720px; margin: 0 auto;
-  }
-  .beta h2 { font-size: clamp(26px, 4vw, 36px); font-weight: 800; }
-  .beta p { margin: 16px auto 0; font-size: 17px; color: var(--text-soft); max-width: 52ch; }
-  .beta .actions { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
-  .beta .btn-primary { padding: 14px 26px; font-size: 16px; }
-
-  /* FAQ */
-  .faq { display: grid; gap: 14px; max-width: 800px; }
-  details {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm);
-    padding: 4px 22px; box-shadow: var(--shadow);
-  }
-  summary {
-    cursor: pointer; list-style: none; font-weight: 650; font-size: 16.5px;
-    padding: 18px 0; display: flex; justify-content: space-between; align-items: center; gap: 16px;
-  }
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: "+"; font-size: 22px; color: var(--accent-strong); font-weight: 400; transition: transform .2s; }
-  details[open] summary::after { transform: rotate(45deg); }
-  details p { padding: 0 0 20px; color: var(--text-soft); font-size: 15.5px; }
-
-  /* Footer */
-  footer { border-top: 1px solid var(--border); padding: 44px 0; margin-top: 20px; }
-  .foot { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; }
-  .foot .brand { font-size: 17px; }
-  .foot-links { display: flex; flex-wrap: wrap; gap: 22px; }
-  .foot-links a { color: var(--text-soft); font-size: 14.5px; }
-  .foot-links a:hover { color: var(--text); }
-  .foot-copy { color: var(--text-faint); font-size: 13.5px; width: 100%; margin-top: 8px; }
-
-  .theme-toggle {
-    background: transparent; border: 1px solid var(--border); color: var(--text-soft);
-    width: 38px; height: 38px; border-radius: 9px; cursor: pointer; display: grid; place-items: center;
-    transition: background .15s, color .15s;
-  }
-  .theme-toggle:hover { background: var(--surface-2); color: var(--text); }
-</style>
-</head>
-<body>
-<header>
-  <div class="wrap nav">
-    <div class="brand"><img class="logo-mark" src="assets/purestate-logo-icon.svg" alt="" aria-hidden="true" /> Purestate</div>
-    <nav class="nav-links">
-      <a href="#features">Funktionen</a>
-      <a href="#how">So funktioniert's</a>
-      <a href="#privacy">Datenschutz</a>
-      <a href="#faq">FAQ</a>
-      <button class="theme-toggle" id="themeToggle" aria-label="Design wechseln" title="Hell/Dunkel wechseln">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      </button>
-      <a href="#beta" class="btn btn-primary">Beta anfragen</a>
-    </nav>
-  </div>
-</header>
-
-<main>
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap">
-      <span class="eyebrow"><span class="dot"></span> In privater Beta · Windows</span>
-      <h1>Ein Filter, dem du <span class="grad">selbst</span> die Kontrolle gibst.</h1>
-      <p class="lead">
-        Purestate ist eine lokale Windows-App mit Browser-Begleiter, die pornografische und
-        erwachsene Inhalte zuverlässig ausblendet – auf ganzen Webseiten, auf gemischten
-        Plattformen und direkt in Suchmaschinen. Freiwillig eingerichtet, mit Passwortschutz
-        gegen den eigenen schwachen Moment.
-      </p>
-      <div class="hero-cta">
-        <a href="#beta" class="btn btn-primary">Zur Beta anmelden</a>
-        <a href="#how" class="btn btn-ghost">So funktioniert's</a>
-      </div>
-      <p class="hero-note">Kostenlos in der Beta · Keine Registrierung · Alle Daten bleiben auf deinem Gerät.</p>
-
-      <div class="trust">
-        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Komplett lokal</span>
-        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Kein Konto, keine Cloud</span>
-        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Keine Werbung, kein Tracking</span>
-        <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Manipulationsgeschützt</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section id="features">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="kicker">Was Purestate kann</div>
-        <h2>Schutz auf allen Ebenen – nicht nur eine Blockliste.</h2>
-        <p>Reine Domain-Sperren scheitern an großen Plattformen, die gute und schlechte Inhalte mischen. Purestate kombiniert deshalb mehrere Schutzebenen, die ineinandergreifen.</p>
-      </div>
-      <div class="grid">
-        <div class="card">
-          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-          <h3>Systemweiter Schutz</h3>
-          <p>Sperrt einschlägige Seiten über Familien-DNS und Hosts-Regeln – in jedem Browser und jeder App, nicht nur im Hauptbrowser.</p>
-        </div>
-        <div class="card">
-          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></svg></div>
-          <h3>Begleiter für gemischte Seiten</h3>
-          <p>Auf Reddit, X, Instagram &amp; Co. wird nur der erwachsene Teil ausgeblendet – die Plattform bleibt normal nutzbar.</p>
-        </div>
-        <div class="card">
-          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
-          <h3>Suchmaschinen-Filter</h3>
-          <p>Erwachsene Suchbegriffe und Tags werden auf Google, Bing, DuckDuckGo, YouTube und vielen weiteren direkt blockiert.</p>
-        </div>
-        <div class="card">
-          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
-          <h3>Passwort &amp; Zeitplan</h3>
-          <p>Ein selbst gesetztes Passwort schützt die Einstellungen. Optional greift der Schutz nur zu bestimmten Zeiten.</p>
-        </div>
-        <div class="card">
-          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div>
-          <h3>Manipulationsschutz</h3>
-          <p>Ein Wächterdienst stellt abgeschaltete Regeln automatisch wieder her – Umgehen wird bewusst schwer gemacht.</p>
-        </div>
-        <div class="card">
-          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20" opacity=".0"/><path d="M4 12a8 8 0 0 1 16 0M4 12a8 8 0 0 0 16 0"/><circle cx="12" cy="12" r="2.4"/></svg></div>
-          <h3>Lokal &amp; privat</h3>
-          <p>Kein Konto, keine Telemetrie, kein Purestate-Server. Alles läuft und bleibt auf deinem eigenen PC.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SUPPORTED SITES -->
-  <section class="sites-band" id="sites">
-    <div class="wrap">
-      <div class="section-head" style="margin-bottom:8px">
-        <div class="kicker">Abgedeckte Plattformen</div>
-        <h2>Dort, wo gute und erwachsene Inhalte sich mischen.</h2>
-        <p>Für diese Plattformen gibt es eigene Schutzmodule, die sich einzeln an- und abschalten lassen – zusätzlich zum systemweiten Filter und der Suchmaschinen-Sperre.</p>
-      </div>
-      <div class="chips">
-        <span class="chip">Reddit</span>
-        <span class="chip">X / Twitter</span>
-        <span class="chip">Bluesky</span>
-        <span class="chip">Tumblr</span>
-        <span class="chip">DeviantArt</span>
-        <span class="chip">pixiv</span>
-        <span class="chip">Newgrounds</span>
-        <span class="chip">Imgur</span>
-        <span class="chip">Instagram</span>
-        <span class="chip">TikTok</span>
-        <span class="chip">Pinterest</span>
-        <span class="chip more">+ Suchmaschinen, YouTube &amp; Giphy</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section id="how">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="kicker">In drei Schritten</div>
-        <h2>In wenigen Minuten eingerichtet.</h2>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="num">1</div>
-          <h3>Windows-App installieren</h3>
-          <p>Die kleine Purestate-App richtet den systemweiten Schutz, Familien-DNS und den Wächterdienst ein.</p>
-        </div>
-        <div class="step">
-          <div class="num">2</div>
-          <h3>Browser-Begleiter aktivieren</h3>
-          <p>Die zugehörige Erweiterung übernimmt die gemischten Plattformen und die Suchmaschinen-Filter.</p>
-        </div>
-        <div class="step">
-          <div class="num">3</div>
-          <h3>Passwort setzen</h3>
-          <p>Du legst ein Passwort fest, das die Einstellungen schützt – gegen den eigenen schwachen Moment.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRIVACY -->
-  <section id="privacy">
-    <div class="wrap">
-      <div class="callout">
-        <h2>Deine Daten verlassen dein Gerät nicht.</h2>
-        <p>
-          Purestate ist ein Werkzeug zur freiwilligen Selbstbeschränkung – kein Überwachungsprodukt.
-          Es gibt keinen Purestate-Server, kein Konto und keine Analyse deines Surfverhaltens. Die
-          Erkennung läuft lokal in App und Browser. Nur zur Inhaltsprüfung fragt der Begleiter auf
-          Reddit und Bluesky die öffentliche Plattform-API mit der ohnehin sichtbaren Beitrags-ID ab.
-        </p>
-        <div class="facts">
-          <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Keine Cloud-Synchronisierung</span>
-          <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Kein Verkauf von Daten</span>
-          <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Passwort nur als Hash gespeichert</span>
-          <span><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg> Datensparsam dokumentiert</span>
-        </div>
-        <p style="margin-top:26px">
-          <a href="datenschutz.html" style="color:#9cc2ff;font-weight:600">Vollständige Datenschutzerklärung lesen →</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- BETA CTA -->
-  <section class="beta" id="beta">
-    <div class="wrap">
-      <div class="box">
-        <div class="kicker">Private Beta</div>
-        <h2 style="margin-top:12px">Werde Beta-Tester.</h2>
-        <p>Purestate befindet sich in der geschlossenen Beta. Schreib uns kurz, auf welchem System du testen möchtest – wir melden uns mit den nächsten Schritten.</p>
-        <div class="actions">
-          <a href="mailto:julius.weckowski@gmx.de?subject=Purestate%20Beta&body=Hallo%2C%20ich%20m%C3%B6chte%20Purestate%20testen." class="btn btn-primary">Beta anfragen</a>
-          <a href="#features" class="btn btn-ghost">Mehr erfahren</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="kicker">Häufige Fragen</div>
-        <h2>Gut zu wissen.</h2>
-      </div>
-      <div class="faq">
-        <details open>
-          <summary>Ist Purestate eine Kindersicherung?</summary>
-          <p>Nein. Purestate ist für die <em>freiwillige Selbstbeschränkung</em> gedacht – du installierst und konfigurierst es selbst. Das Passwort schützt dich vor deinem eigenen schwachen Moment, nicht ein anderer Mensch vor dir.</p>
-        </details>
-        <details>
-          <summary>Welche Systeme werden unterstützt?</summary>
-          <p>Aktuell Windows mit den Browsern Google Chrome und Microsoft Edge über den Purestate-Begleiter. Versionen für Android und iOS sind noch nicht verfügbar.</p>
-        </details>
-        <details>
-          <summary>Sammelt Purestate meine Browsing-Daten?</summary>
-          <p>Nein. Es gibt keinen Purestate-Server und keine Telemetrie. Die gesamte Erkennung läuft lokal auf deinem Gerät. Details stehen in der Datenschutzerklärung.</p>
-        </details>
-        <details>
-          <summary>Kann ich den Schutz einfach wieder abschalten?</summary>
-          <p>Das Ändern oder Pausieren der Einstellungen ist durch dein selbst gesetztes Passwort geschützt, und ein Wächterdienst stellt abgeschaltete Regeln wieder her. Das ist bewusst so – Selbstbeschränkung wirkt nur, wenn Umgehen nicht trivial ist.</p>
-        </details>
-        <details>
-          <summary>Was kostet Purestate?</summary>
-          <p>Während der Beta ist die Nutzung kostenlos.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap foot">
-    <div class="brand"><img class="logo-mark" src="assets/purestate-logo-icon.svg" alt="" aria-hidden="true" /> Purestate</div>
-    <div class="foot-links">
-      <a href="#features">Funktionen</a>
-      <a href="#how">So funktioniert's</a>
-      <a href="datenschutz.html">Datenschutz</a>
-      <a href="impressum.html">Impressum</a>
-      <a href="mailto:julius.weckowski@gmx.de">Kontakt</a>
-    </div>
-    <div class="foot-copy">© <span id="year">2026</span> Purestate · Werkzeug zur freiwilligen Selbstbeschränkung. Alle Verarbeitung erfolgt lokal auf deinem Gerät.</div>
-  </div>
-</footer>
-
-<script>
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#060e1c" media="(prefers-color-scheme: dark)"><title>Purestate – Freiwillige Selbstbeschränkung für Windows</title><meta name="description" content="Purestate ist eine lokale Windows-App mit Browser-Begleiter für freiwillige digitale Selbstbeschränkung. Sie schafft eine bewusste Hürde gegen impulsive Umgehung – lokal, ohne Konto, ohne Cloud, ohne Tracking."><link rel="canonical" href="https://purestate-app.com/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="sitemap" href="/sitemap-index.xml"><meta property="og:title" content="Purestate – Freiwillige Selbstbeschränkung für Windows"><meta property="og:description" content="Purestate ist eine lokale Windows-App mit Browser-Begleiter für freiwillige digitale Selbstbeschränkung. Sie schafft eine bewusste Hürde gegen impulsive Umgehung – lokal, ohne Konto, ohne Cloud, ohne Tracking."><meta property="og:type" content="website"><meta property="og:locale" content="de_DE"><meta property="og:url" content="https://purestate-app.com/"><meta property="og:site_name" content="Purestate"><meta property="og:image" content="https://purestate-app.com/og-image.svg"><meta name="twitter:card" content="summary"><script>
+      /* Set theme before first paint to avoid a flash. Only "light"/"dark";
+         when nothing is stored we fall back to the OS setting via CSS. */
+      (function () {
+        try {
+          const t = localStorage.getItem('purestate-theme');
+          if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        } catch {
+          /* private mode etc. — OS preference applies */
+        }
+      })();
+    </script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Purestate","applicationCategory":"SecurityApplication","operatingSystem":"Windows 10, Windows 11","description":"Lokale Windows-App mit Browser-Begleiter für freiwillige digitale Selbstbeschränkung gegen impulsive Nutzung erwachsener Inhalte.","inLanguage":"de","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}}</script><link rel="stylesheet" href="/_astro/PauseMark.BdaNHHt4.css"></head><body><a href="#main" class="focus:bg-surface focus:text-ink sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:px-4 focus:py-2 focus:shadow-lg">Zum Inhalt springen</a><header class="border-line bg-bg/85 sticky top-0 z-40 border-b backdrop-blur-md" data-astro-cid-fzpbxy5g><div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5" data-astro-cid-fzpbxy5g><a href="/" class="text-ink flex items-center gap-2.5 text-[17px] font-semibold tracking-tight" aria-label="Purestate – Startseite" data-astro-cid-fzpbxy5g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="30" height="30" aria-hidden="true"><defs><linearGradient id="ps-grad-lpmmrv" x1="72" y1="16" x2="111" y2="112" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#49c3bd"></stop><stop offset="1" stop-color="#2aa8a6"></stop></linearGradient></defs><path d="M56 18 22 34v27c0 25 13.5 45 34 56" fill="none" stroke="var(--logo-left, #123456)" stroke-width="11.5"></path><path d="M72 18 106 34v27c0 25-13.5 45-34 56" fill="none" stroke="url(#ps-grad-lpmmrv)" stroke-width="11.5"></path><rect x="48" y="51" width="12" height="34" rx="3.5" fill="var(--logo-bars, #0b1b34)"></rect><rect x="68" y="51" width="12" height="34" rx="3.5" fill="var(--logo-bars, #0b1b34)"></rect></svg>Purestate</a><nav class="hidden items-center gap-7 md:flex" aria-label="Hauptnavigation" data-astro-cid-fzpbxy5g><a href="/#how" class="text-soft hover:text-ink text-[15px] font-medium transition-colors" data-astro-cid-fzpbxy5g>So funktioniert es</a><a href="/#why" class="text-soft hover:text-ink text-[15px] font-medium transition-colors" data-astro-cid-fzpbxy5g>Warum anders</a><a href="/#browsers" class="text-soft hover:text-ink text-[15px] font-medium transition-colors" data-astro-cid-fzpbxy5g>Browser</a><a href="/#limits" class="text-soft hover:text-ink text-[15px] font-medium transition-colors" data-astro-cid-fzpbxy5g>Grenzen</a><a href="/#faq" class="text-soft hover:text-ink text-[15px] font-medium transition-colors" data-astro-cid-fzpbxy5g>FAQ</a></nav><div class="flex items-center gap-2.5" data-astro-cid-fzpbxy5g><button id="themeToggle" type="button" class="border-line text-soft hover:border-line-strong hover:text-ink flex h-11 w-11 items-center justify-center rounded-lg border transition-colors" aria-label="Helles oder dunkles Design wählen" title="Design wechseln" data-astro-cid-fzpbxy5g><svg class="theme-sun h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-fzpbxy5g><circle cx="12" cy="12" r="4" data-astro-cid-fzpbxy5g></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-fzpbxy5g></path></svg><svg class="theme-moon h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-fzpbxy5g><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-fzpbxy5g></path></svg></button><a href="/#beta" class="btn btn-primary hidden sm:inline-flex" data-astro-cid-fzpbxy5g>Für Beta vormerken</a><button id="navToggle" type="button" class="border-line text-soft hover:text-ink flex h-11 w-11 items-center justify-center rounded-lg border md:hidden" aria-expanded="false" aria-controls="navMenu" aria-label="Menü öffnen oder schließen" data-astro-cid-fzpbxy5g><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-fzpbxy5g><path d="M3 6h18M3 12h18M3 18h18" data-astro-cid-fzpbxy5g></path></svg></button></div></div><nav id="navMenu" class="border-line bg-bg hidden border-t px-5 py-3 md:!hidden" aria-label="Mobiles Menü" data-astro-cid-fzpbxy5g><ul class="flex flex-col" data-astro-cid-fzpbxy5g><li data-astro-cid-fzpbxy5g><a href="/#how" class="text-soft hover:text-ink block py-2.5 text-[15.5px] font-medium" data-astro-cid-fzpbxy5g>So funktioniert es</a></li><li data-astro-cid-fzpbxy5g><a href="/#why" class="text-soft hover:text-ink block py-2.5 text-[15.5px] font-medium" data-astro-cid-fzpbxy5g>Warum anders</a></li><li data-astro-cid-fzpbxy5g><a href="/#browsers" class="text-soft hover:text-ink block py-2.5 text-[15.5px] font-medium" data-astro-cid-fzpbxy5g>Browser</a></li><li data-astro-cid-fzpbxy5g><a href="/#limits" class="text-soft hover:text-ink block py-2.5 text-[15.5px] font-medium" data-astro-cid-fzpbxy5g>Grenzen</a></li><li data-astro-cid-fzpbxy5g><a href="/#faq" class="text-soft hover:text-ink block py-2.5 text-[15.5px] font-medium" data-astro-cid-fzpbxy5g>FAQ</a></li><li data-astro-cid-fzpbxy5g><a href="/#beta" class="text-accent block py-2.5 text-[15.5px] font-semibold" data-astro-cid-fzpbxy5g>Für Beta vormerken →</a></li></ul></nav></header><main id="main"><section class="border-line border-b"><div class="mx-auto max-w-6xl px-5 pt-16 pb-12 sm:pt-24 sm:pb-16"><p class="rise rise-1 mono-label">Geschlossene Beta · Windows 10 &amp; 11 · Chrome &amp; Edge</p><h1 class="rise rise-2 display text-ink mt-8 max-w-4xl text-[clamp(38px,6.2vw,68px)]">Eine bewusste Hürde zwischen<br><span class="em-strong">Impuls</span><span class="sr-only"> und </span><span class="pause-mark pause-breathe mx-3 text-[0.92em]" aria-hidden="true"><i></i><i></i></span><span class="em-strong">Entscheidung</span>.</h1><p class="rise rise-3 text-soft mt-8 max-w-xl text-[17.5px]">Purestate ist eine lokale Windows-App mit Browser-Begleiter für freiwillige digitale Selbstbeschränkung. Sie schafft mehr Abstand zum Impuls – auf deinem PC, ohne Konto, ohne Cloud und ohne dich zu überwachen.</p><div class="rise rise-4 mt-9 flex flex-wrap items-center gap-3"><a href="#beta" class="btn btn-primary px-6 py-3 text-[16px]">Für Beta vormerken</a><button type="button" id="probeOpen" class="btn btn-ghost px-6 py-3 text-[16px]"><span class="pause-mark text-[14px]" aria-hidden="true"><i></i><i></i></span> Die Pause erleben</button></div><ul class="rise rise-4 border-line mt-14 flex flex-wrap gap-x-8 gap-y-2.5 border-t pt-5" role="list"><li class="text-faint font-mono text-[12.5px] font-medium tracking-[0.14em] uppercase">Komplett lokal</li><li class="text-faint font-mono text-[12.5px] font-medium tracking-[0.14em] uppercase">Kein Konto, keine Cloud</li><li class="text-faint font-mono text-[12.5px] font-medium tracking-[0.14em] uppercase">Keine Screenshots, kein Tracking</li><li class="text-faint font-mono text-[12.5px] font-medium tracking-[0.14em] uppercase">Schutz vor schnellen Umgehungen</li></ul></div></section><div class="probe-overlay" id="probeOverlay" role="dialog" aria-modal="true" aria-labelledby="probe-h" aria-describedby="probe-p"><div class="probe-inner"><p class="probe-count" id="probeCount" aria-hidden="true">6</p><div class="probe-bars mt-6" aria-hidden="true"><i></i><i></i></div><h2 id="probe-h" class="display mt-8 text-[clamp(24px,4vw,34px)] text-[#e8ecf1]">Das ist die ganze Idee.</h2><p id="probe-p" class="mt-4 text-[16.5px] text-[#a8b4c6]">Kein Verbot, keine Strafe – ein ruhiger Moment Abstand, bevor du entscheidest. Im Ernstfall dauert er nicht sechs Sekunden, sondern so lange, wie du es selbst eingestellt hast.</p><div class="probe-actions mt-8 flex flex-wrap items-center justify-center gap-3"><button type="button" class="btn px-6 text-[#04121f]" id="probeClose" style="background:var(--teal-bright)">Verstanden – zurück zur Seite</button></div><p class="mt-6"><button type="button" id="probeCancel" class="text-[14px] font-medium text-[#8fa1b8] underline underline-offset-4 hover:text-[#e8ecf1]">Abbrechen (Esc)</button></p></div></div><script>
   (function () {
-    var t = document.getElementById('themeToggle');
-    var root = document.documentElement;
-    t.addEventListener('click', function () {
-      var current = root.getAttribute('data-theme');
-      if (!current) {
-        current = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const overlay = document.getElementById('probeOverlay');
+    const openBtn = document.getElementById('probeOpen');
+    if (!overlay || !openBtn) return;
+    const countEl = document.getElementById('probeCount');
+    const closeBtn = document.getElementById('probeClose');
+    const cancelBtn = document.getElementById('probeCancel');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let timer = null;
+    let lastFocus = null;
+
+    function finish() {
+      overlay.setAttribute('data-done', '');
+      countEl.textContent = '';
+      closeBtn.focus();
+    }
+
+    function open() {
+      lastFocus = document.activeElement;
+      overlay.setAttribute('data-open', '');
+      overlay.removeAttribute('data-done');
+      document.body.style.overflow = 'hidden';
+      if (reducedMotion) {
+        /* No countdown theater without motion — show the message at once. */
+        finish();
+        return;
       }
-      root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+      let remaining = 6;
+      countEl.textContent = String(remaining);
+      cancelBtn.focus();
+      timer = setInterval(function () {
+        remaining -= 1;
+        if (remaining <= 0) {
+          clearInterval(timer);
+          timer = null;
+          finish();
+        } else {
+          countEl.textContent = String(remaining);
+        }
+      }, 1000);
+    }
+
+    function close() {
+      if (timer) clearInterval(timer);
+      timer = null;
+      overlay.removeAttribute('data-open');
+      overlay.removeAttribute('data-done');
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }
+
+    openBtn.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    cancelBtn.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && overlay.hasAttribute('data-open')) close();
     });
-    document.getElementById('year').textContent = new Date().getFullYear();
+    /* Keep focus inside the dialog while it is open */
+    document.addEventListener('focusin', function (e) {
+      if (overlay.hasAttribute('data-open') && !overlay.contains(e.target)) {
+        (overlay.hasAttribute('data-done') ? closeBtn : cancelBtn).focus();
+      }
+    });
   })();
-</script>
-</body>
-</html>
+</script><section id="benefits" class="mx-auto max-w-6xl px-5 py-16 sm:py-24" aria-labelledby="benefits-h"><div class="max-w-2xl"><p class="mono-label flex items-center gap-2.5" id="benefits-h"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span>Was Purestate ausmacht</p><h2 class="display text-ink mt-4 text-[clamp(27px,3.6vw,38px)]">Drei Dinge, die den <span class="em-strong">Unterschied</span> machen.</h2><p class="text-soft mt-4 text-[16.5px]">Kein grober Komplett-Blocker und kein Überwachungswerkzeug – sondern eine ruhige, technische Reibung, die du selbst einrichtest.</p></div><div class="ledger mt-12"><article class="grid gap-2 md:grid-cols-[180px_1fr] md:gap-10"><p class="mono-label pt-1.5">Lokal</p><div class="max-w-2xl"><h3 class="text-ink text-[19px] font-semibold">Private, lokale Verarbeitung</h3><p class="text-soft mt-2 text-[15.5px]">Alles läuft auf deinem eigenen PC. Kein Purestate-Server, kein Nutzerkonto, keine Cloud-Synchronisierung und keine Telemetrie in der Beta.</p></div></article><article class="grid gap-2 md:grid-cols-[180px_1fr] md:gap-10"><p class="mono-label pt-1.5">Reibung</p><div class="max-w-2xl"><h3 class="text-ink text-[19px] font-semibold">Abstand in impulsiven Momenten</h3><p class="text-soft mt-2 text-[15.5px]">Änderungen, Pausen und Deinstallation brauchen bewusst Passwort, Bestätigung und Zeit. Das schafft Reibung genau dann, wenn eine schnelle Umgehung sonst leicht wäre.</p></div></article><article class="grid gap-2 md:grid-cols-[180px_1fr] md:gap-10"><p class="mono-label pt-1.5">Präzision</p><div class="max-w-2xl"><h3 class="text-ink text-[19px] font-semibold">Gemischte Seiten bleiben nutzbar</h3><p class="text-soft mt-2 text-[15.5px]">Auf Plattformen wie Reddit, X oder Instagram wird gezielt der erwachsene Teil ausgeblendet – statt die ganze Seite pauschal zu sperren.</p></div></article></div></section><section id="how" class="border-line bg-bg2 border-y" aria-labelledby="how-h"><div class="mx-auto max-w-6xl px-5 py-16 sm:py-24"><div class="max-w-2xl"><p class="mono-label flex items-center gap-2.5" id="how-h"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span>So funktioniert es</p><h2 class="display text-ink mt-4 text-[clamp(27px,3.6vw,38px)]">In vier <span class="em-strong">ruhigen</span> Schritten eingerichtet.</h2><p class="text-soft mt-4 text-[16.5px]">Du behältst die Kontrolle – Purestate legt nur die technischen Schutzschichten darunter.</p></div><ol class="mt-12 max-w-3xl"><li class="relative flex gap-6 pb-10 last:pb-0 sm:gap-8"><span class="bg-line absolute top-10 bottom-2 left-[19px] w-px" aria-hidden="true"></span><span class="border-line-strong bg-surface text-accent flex h-10 w-10 shrink-0 items-center justify-center rounded-full border font-mono text-[14px] font-medium" aria-hidden="true">1</span><div class="pt-1.5"><h3 class="text-ink text-[17px] font-semibold">Installieren &amp; Passwort setzen</h3><p class="text-soft mt-1.5 text-[15px]">Du installierst die kleine Windows-App und legst ein eigenes Passwort fest, das die Einstellungen schützt.</p></div></li><li class="relative flex gap-6 pb-10 last:pb-0 sm:gap-8"><span class="bg-line absolute top-10 bottom-2 left-[19px] w-px" aria-hidden="true"></span><span class="border-line-strong bg-surface text-accent flex h-10 w-10 shrink-0 items-center justify-center rounded-full border font-mono text-[14px] font-medium" aria-hidden="true">2</span><div class="pt-1.5"><h3 class="text-ink text-[17px] font-semibold">Schutzschichten werden eingerichtet</h3><p class="text-soft mt-1.5 text-[15px]">Purestate richtet lokale Sperren, Familien-DNS, SafeSearch und einen Wächterdienst ein.</p></div></li><li class="relative flex gap-6 pb-10 last:pb-0 sm:gap-8"><span class="bg-line absolute top-10 bottom-2 left-[19px] w-px" aria-hidden="true"></span><span class="border-line-strong bg-surface text-accent flex h-10 w-10 shrink-0 items-center justify-center rounded-full border font-mono text-[14px] font-medium" aria-hidden="true">3</span><div class="pt-1.5"><h3 class="text-ink text-[17px] font-semibold">Browser &amp; Plattformen geschützt</h3><p class="text-soft mt-1.5 text-[15px]">Der Begleiter für Chrome und Edge übernimmt gemischte Plattformen und die Suchmaschinen-Filter.</p></div></li><li class="relative flex gap-6 pb-10 last:pb-0 sm:gap-8"><span class="border-line-strong bg-surface text-accent flex h-10 w-10 shrink-0 items-center justify-center rounded-full border font-mono text-[14px] font-medium" aria-hidden="true">4</span><div class="pt-1.5"><h3 class="text-ink text-[17px] font-semibold">Änderungen brauchen Zeit</h3><p class="text-soft mt-1.5 text-[15px]">Pausieren, Anpassen oder Entfernen verlangt bewusst Passwort, Bestätigung und eine Abkühlzeit.</p></div></li></ol><details class="qa mt-10 max-w-3xl"><summary>Technische Details für Interessierte</summary><div class="qa-body !max-w-none"><div class="grid gap-x-10 gap-y-5 pt-1 sm:grid-cols-2"><div><h3 class="text-ink font-mono text-[13px] font-medium tracking-[0.1em] uppercase">DNS- &amp; Hosts-Schutz</h3><p class="text-soft mt-1.5 text-[14.5px]">Ein optionales Familien-DNS-Profil und lokale Hosts-Regeln blockieren einschlägige Domains systemweit – in jedem Browser und jeder App.</p></div><div><h3 class="text-ink font-mono text-[13px] font-medium tracking-[0.1em] uppercase">Browser-Policies &amp; SafeSearch</h3><p class="text-soft mt-1.5 text-[14.5px]">Über die von Windows unterstützten Browser-Richtlinien werden SafeSearch erzwungen und unsichere Umwege eingeschränkt.</p></div><div><h3 class="text-ink font-mono text-[13px] font-medium tracking-[0.1em] uppercase">Companion für gemischte Seiten</h3><p class="text-soft mt-1.5 text-[14.5px]">Die Erweiterung für Chrome und Edge blendet auf ausgewählten Plattformen gezielt erwachsene Markierungen, Tags und Suchbegriffe aus.</p></div><div><h3 class="text-ink font-mono text-[13px] font-medium tracking-[0.1em] uppercase">Windows-Dienst &amp; Watchdog</h3><p class="text-soft mt-1.5 text-[14.5px]">Ein lokaler Dienst mit Wächter stellt abgeschaltete Regeln wieder her, damit eine schnelle Umgehung nicht trivial ist.</p></div></div><p class="mt-5 text-[14.5px]">Die gesamte Erkennung läuft lokal. Details stehen in der<a href="/datenschutz/">Datenschutzerklärung</a>.</p></div></details></div></section><section id="why" class="mx-auto max-w-6xl px-5 py-16 sm:py-24" aria-labelledby="why-h"><div class="max-w-2xl"><p class="mono-label flex items-center gap-2.5" id="why-h"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span>Warum Purestate anders ist</p><h2 class="display text-ink mt-4 text-[clamp(27px,3.6vw,38px)]">Bewusste Reibung statt <span class="em-strong">unrealistischer</span> Versprechen.</h2><p class="text-soft mt-4 text-[16.5px]">Purestate ist ein Werkzeug zur freiwilligen Selbstbeschränkung – kein Rechenschafts-, Überwachungs- oder Elternkontrollprodukt. Was es alles <em>nicht</em> tut, ist Absicht:</p></div><ul class="mt-12 grid gap-x-14 sm:grid-cols-2" role="list"><li class="border-line border-t py-5"><h3 class="text-ink text-[16.5px] font-semibold">Kein Konto nötig</h3><p class="text-soft mt-1 text-[14.5px]">Keine Anmeldung, keine E-Mail-Pflicht, keine Profile.</p></li><li class="border-line border-t py-5"><h3 class="text-ink text-[16.5px] font-semibold">Keine Screenshots</h3><p class="text-soft mt-1 text-[14.5px]">Purestate erstellt keine Bildschirmfotos deiner Nutzung.</p></li><li class="border-line border-t py-5"><h3 class="text-ink text-[16.5px] font-semibold">Keine Rechenschaftspartner</h3><p class="text-soft mt-1 text-[14.5px]">Niemand erhält Berichte über dein Verhalten.</p></li><li class="border-line border-t py-5"><h3 class="text-ink text-[16.5px] font-semibold">Keine Cloud in der Beta</h3><p class="text-soft mt-1 text-[14.5px]">Keine Synchronisierung, keine Server-Verarbeitung.</p></li><li class="border-line border-t py-5"><h3 class="text-ink text-[16.5px] font-semibold">Keine Telemetrie</h3><p class="text-soft mt-1 text-[14.5px]">Kein Nutzungs-Tracking, keine Analyse deines Surfens.</p></li><li class="border-line border-t py-5"><h3 class="text-ink text-[16.5px] font-semibold">Keine pauschale Komplettsperre</h3><p class="text-soft mt-1 text-[14.5px]">Unterstützte Mixed Sites bleiben nutzbar – nur der erwachsene Teil geht.</p></li></ul></section><section id="sites" class="border-line bg-bg2 border-y" aria-labelledby="sites-h"><div class="mx-auto max-w-6xl px-5 py-16 sm:py-20"><div class="max-w-2xl"><p class="mono-label flex items-center gap-2.5" id="sites-h"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span>Abgedeckte Plattformen</p><h2 class="display text-ink mt-4 text-[clamp(27px,3.6vw,38px)]">Dort, wo gute und erwachsene Inhalte sich <span class="em-strong">mischen</span>.</h2><p class="text-soft mt-4 text-[16.5px]">Für diese Plattformen gibt es eigene Schutzmodule, die sich einzeln an- und abschalten lassen – zusätzlich zum systemweiten Filter und der Suchmaschinen-Sperre.</p></div><ol class="mt-10 grid gap-x-14 sm:grid-cols-2 lg:grid-cols-3" aria-label="Unterstützte Plattformen"><li class="border-line text-ink flex items-baseline gap-4 border-t py-3 text-[16px] font-medium"><span class="text-faint font-mono text-[12.5px]" aria-hidden="true">01</span>Reddit</li><li class="border-line text-ink flex items-baseline gap-4 border-t py-3 text-[16px] font-medium"><span class="text-faint font-mono text-[12.5px]" aria-hidden="true">02</span>X / Twitter</li><li class="border-line text-ink flex items-baseline gap-4 border-t py-3 text-[16px] font-medium"><span class="text-faint font-mono text-[12.5px]" aria-hidden="true">03</span>Bluesky</li><li class="border-line text-ink flex items-baseline gap-4 border-t py-3 text-[16px] font-medium"><span class="text-faint font-mono text-[12.5px]" aria-hidden="true">04</span>Tumblr</li><li class="border-line text-ink flex items-baseline gap-4 border-t py-3 text-[16px] font-medium"><span class="text-faint font-mono text-[12.5px]" aria-hidden="true">05</span>DeviantArt</li><li class="border-line text-ink flex items-baseline gap-4 border-t py-3 text-[16px] font-medium"><span class="text-faint font-mono text-[12.5px]" aria-hidden="true">06</span>pixiv</li><li class="border-line text-ink flex items-baseline gap-4 border-t py-3 text-[16px] font-medium"><span class="text-faint font-mono text-[12.5px]" aria-hidden="true">07</span>Newgrounds</li><li class="border-line text-ink flex items-baseline gap-4 border-t py-3 text-[16px] font-medium"><span class="text-faint font-mono text-[12.5px]" aria-hidden="true">08</span>Imgur</li><li class="border-line text-ink flex items-baseline gap-4 border-t py-3 text-[16px] font-medium"><span class="text-faint font-mono text-[12.5px]" aria-hidden="true">09</span>Instagram</li><li class="border-line text-ink flex items-baseline gap-4 border-t py-3 text-[16px] font-medium"><span class="text-faint font-mono text-[12.5px]" aria-hidden="true">10</span>TikTok</li><li class="border-line text-ink flex items-baseline gap-4 border-t py-3 text-[16px] font-medium"><span class="text-faint font-mono text-[12.5px]" aria-hidden="true">11</span>Pinterest</li></ol><p class="text-soft mt-6 text-[14.5px]">Dazu kommen die NSFW-Suchsperren für Google, Bing, DuckDuckGo &amp; Co. sowie YouTube und Giphy.</p></div></section><section id="browsers" class="mx-auto max-w-6xl px-5 py-16 sm:py-24" aria-labelledby="browsers-h"><div class="max-w-2xl"><p class="mono-label flex items-center gap-2.5" id="browsers-h"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span>Browser &amp; Schutzumfang</p><h2 class="display text-ink mt-4 text-[clamp(27px,3.6vw,38px)]">Klar, was wo <span class="em-strong">unterstützt</span> wird.</h2><p class="text-soft mt-4 text-[16.5px]">Die Beta priorisiert bewusst Chrome und Edge, weil sie den vollständigen Companion-Schutz erhalten.</p></div><div class="mt-10 overflow-x-auto"><table class="w-full min-w-[640px] border-collapse text-left"><caption class="sr-only">Schutzumfang je Browser in der aktuellen Beta.</caption><thead><tr class="border-line-strong text-faint border-b font-mono text-[12px] tracking-[0.12em] uppercase"><th scope="col" class="py-3 pr-6 font-medium">Browser</th><th scope="col" class="px-6 py-3 font-medium">Basis-Schutz</th><th scope="col" class="px-6 py-3 font-medium">Mixed-Site-Schutz</th><th scope="col" class="py-3 pl-6 font-medium">Status</th></tr></thead><tbody><tr class="border-line border-b text-[15px]"><th scope="row" class="text-ink py-4 pr-6 font-semibold">Google Chrome</th><td class="px-6 py-4"><span class="flex items-center gap-1.5 font-medium text-ok"><svg width="1em" height="1em" class="h-4 w-4 shrink-0" aria-hidden="true" data-icon="lucide:check"><symbol id="ai:lucide:check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></symbol><use href="#ai:lucide:check"></use></svg>Ja</span></td><td class="px-6 py-4"><span class="flex items-center gap-1.5 font-medium text-ok"><svg width="1em" height="1em" viewBox="0 0 24 24" class="h-4 w-4 shrink-0" aria-hidden="true" data-icon="lucide:check"><use href="#ai:lucide:check"></use></svg>Ja</span></td><td class="py-4 pl-6"><span class="font-mono text-[12.5px] font-medium tracking-[0.08em] whitespace-nowrap uppercase text-ok">Voll unterstützt</span></td></tr><tr class="border-line border-b text-[15px]"><th scope="row" class="text-ink py-4 pr-6 font-semibold">Microsoft Edge</th><td class="px-6 py-4"><span class="flex items-center gap-1.5 font-medium text-ok"><svg width="1em" height="1em" viewBox="0 0 24 24" class="h-4 w-4 shrink-0" aria-hidden="true" data-icon="lucide:check"><use href="#ai:lucide:check"></use></svg>Ja</span></td><td class="px-6 py-4"><span class="flex items-center gap-1.5 font-medium text-ok"><svg width="1em" height="1em" viewBox="0 0 24 24" class="h-4 w-4 shrink-0" aria-hidden="true" data-icon="lucide:check"><use href="#ai:lucide:check"></use></svg>Ja</span></td><td class="py-4 pl-6"><span class="font-mono text-[12.5px] font-medium tracking-[0.08em] whitespace-nowrap uppercase text-ok">Voll unterstützt</span></td></tr><tr class="border-line border-b text-[15px]"><th scope="row" class="text-ink py-4 pr-6 font-semibold">Mozilla Firefox</th><td class="px-6 py-4"><span class="flex items-center gap-1.5 font-medium text-ok"><svg width="1em" height="1em" viewBox="0 0 24 24" class="h-4 w-4 shrink-0" aria-hidden="true" data-icon="lucide:check"><use href="#ai:lucide:check"></use></svg>Ja</span></td><td class="px-6 py-4"><span class="flex items-center gap-1.5 font-medium text-warn"><svg width="1em" height="1em" class="h-4 w-4 shrink-0" aria-hidden="true" data-icon="lucide:circle-alert"><symbol id="ai:lucide:circle-alert" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></g></symbol><use href="#ai:lucide:circle-alert"></use></svg>Eingeschränkt</span></td><td class="py-4 pl-6"><span class="font-mono text-[12.5px] font-medium tracking-[0.08em] whitespace-nowrap uppercase text-warn">Basis-Schutz</span></td></tr><tr class="border-line border-b text-[15px]"><th scope="row" class="text-ink py-4 pr-6 font-semibold">Andere Browser</th><td class="px-6 py-4"><span class="flex items-center gap-1.5 font-medium text-bad"><svg width="1em" height="1em" class="h-4 w-4 shrink-0" aria-hidden="true" data-icon="lucide:x"><symbol id="ai:lucide:x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/></symbol><use href="#ai:lucide:x"></use></svg>Nein bzw. eingeschränkt</span></td><td class="px-6 py-4"><span class="flex items-center gap-1.5 font-medium text-bad"><svg width="1em" height="1em" viewBox="0 0 24 24" class="h-4 w-4 shrink-0" aria-hidden="true" data-icon="lucide:x"><use href="#ai:lucide:x"></use></svg>Nein</span></td><td class="py-4 pl-6"><span class="font-mono text-[12.5px] font-medium tracking-[0.08em] whitespace-nowrap uppercase text-faint">Nicht unterstützt</span></td></tr></tbody></table></div></section><section id="limits" class="border-line bg-bg2 border-y" aria-labelledby="limits-h"><div class="mx-auto max-w-6xl px-5 py-16 sm:py-24"><div class="max-w-2xl"><p class="mono-label flex items-center gap-2.5" id="limits-h"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span>Transparente Grenzen</p><h2 class="display text-ink mt-4 text-[clamp(27px,3.6vw,38px)]">Was Purestate leisten kann – und was <span class="em-strong">nicht</span>.</h2><p class="text-soft mt-4 text-[16.5px]">Ehrlichkeit gehört zum Vertrauen. Deshalb sagen wir klar, wo die technischen Grenzen liegen.</p></div><div class="mt-12 grid gap-x-14 sm:grid-cols-2"><article class="border-line border-t py-6"><h3 class="text-ink text-[16.5px] font-semibold">Schutz vor impulsiven Umgehungen</h3><p class="text-soft mt-2 text-[15px]">Purestate ist darauf ausgelegt, schnelle, spontane Umgehungsversuche zu erschweren – nicht, jede denkbare technische Umgehung unmöglich zu machen.</p></article><article class="border-line border-t py-6"><h3 class="text-ink text-[16.5px] font-semibold">Ein Administrator kann es entfernen</h3><p class="text-soft mt-2 text-[15px]">Ein entschlossener lokaler Windows-Administrator kann den Schutz technisch letztlich abbauen. Purestate ist eine freiwillige Hürde, kein Zwangssystem.</p></article><article class="border-line border-t py-6"><h3 class="text-ink text-[16.5px] font-semibold">Kein Passwort-Reset</h3><p class="text-soft mt-2 text-[15px]">Es gibt keinen Passwort-Reset. Bei Passwortverlust ist ein manueller, technischer Rückbau nötig – nimm die Wahl deines Passworts also ernst.</p></article><article class="border-line border-t py-6"><h3 class="text-ink text-[16.5px] font-semibold">Keine Therapie oder Heilung</h3><p class="text-soft mt-2 text-[15px]">Purestate ersetzt keine Therapie, keine medizinische Beratung und keine professionelle Unterstützung. Es ist ein technisches Hilfsmittel.</p></article></div></div></section><section id="privacy" class="mx-auto max-w-6xl px-5 py-16 sm:py-24" aria-labelledby="privacy-h"><div class="rounded-md bg-[#0a1a31] p-8 text-[#e8ecf1] sm:p-14"><p class="mono-label flex items-center gap-2.5 !text-[#8fa1b8]"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span> Datenschutz</p><h2 id="privacy-h" class="display mt-5 max-w-xl text-[clamp(26px,3.6vw,40px)] text-[#f7f8f7]">Deine Daten verlassen dein Gerät <span class="em-strong">nicht</span>.</h2><p class="mt-5 max-w-2xl text-[16px] text-[#a8b4c6]">Es gibt keinen Purestate-Server, kein Konto und keine Analyse deines Surfverhaltens. Die Erkennung läuft lokal in App und Browser. Nur zur Inhaltsprüfung fragt der Begleiter auf Reddit und Bluesky die öffentliche Plattform-API mit der ohnehin sichtbaren Beitrags-Kennung ab – ohne Inhalte hochzuladen.</p><ul class="mt-8 flex flex-wrap gap-x-8 gap-y-2.5 border-t border-[#22334f] pt-5" role="list"><li class="font-mono text-[12.5px] font-medium tracking-[0.14em] text-[#8fa1b8] uppercase">Keine Cloud-Synchronisierung</li><li class="font-mono text-[12.5px] font-medium tracking-[0.14em] text-[#8fa1b8] uppercase">Kein Verkauf von Daten</li><li class="font-mono text-[12.5px] font-medium tracking-[0.14em] text-[#8fa1b8] uppercase">Passwort nur als Hash gespeichert</li><li class="font-mono text-[12.5px] font-medium tracking-[0.14em] text-[#8fa1b8] uppercase">Datensparsam dokumentiert</li></ul><p class="mt-8"><a href="/datenschutz/" class="font-semibold text-[#49c3bd] underline decoration-2 underline-offset-4 hover:text-[#63d4ce]">Vollständige Datenschutzerklärung lesen →</a></p></div></section><section id="beta" class="border-line bg-bg2 border-y" aria-labelledby="beta-h"><div class="mx-auto max-w-6xl px-5 py-16 sm:py-24"><div class="grid gap-12 lg:grid-cols-[1fr_1.1fr]"><div><p class="mono-label flex items-center gap-2.5"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span> Geschlossene Beta</p><h2 id="beta-h" class="display text-ink mt-4 text-[clamp(27px,3.6vw,38px)]">Für die DACH-Beta <span class="em-strong">vormerken</span>.</h2><p class="text-soft mt-4 text-[16.5px]">Purestate ist in einer geschlossenen Beta. Gesucht werden Windows-10/11-Nutzer mit Chrome oder Edge, die eine ruhige, freiwillige Hürde ausprobieren möchten.</p><ul class="mt-6 space-y-3" role="list"><li class="text-soft flex items-start gap-2.5 text-[15.5px]"><svg width="1em" height="1em" viewBox="0 0 24 24" class="text-accent mt-1 h-4.5 w-4.5 shrink-0" aria-hidden="true" data-icon="lucide:check"><use href="#ai:lucide:check"></use></svg>Dein Feedback verbessert Installation, Schutz und Alltagstauglichkeit.</li><li class="text-soft flex items-start gap-2.5 text-[15.5px]"><svg width="1em" height="1em" viewBox="0 0 24 24" class="text-accent mt-1 h-4.5 w-4.5 shrink-0" aria-hidden="true" data-icon="lucide:check"><use href="#ai:lucide:check"></use></svg>Aktuell keine Preiszusage und kein Kaufzwang.</li><li class="text-soft flex items-start gap-2.5 text-[15.5px]"><svg width="1em" height="1em" viewBox="0 0 24 24" class="text-accent mt-1 h-4.5 w-4.5 shrink-0" aria-hidden="true" data-icon="lucide:check"><use href="#ai:lucide:check"></use></svg>Du erhältst klare Installations- und Rückmeldeinformationen.</li><li class="text-soft flex items-start gap-2.5 text-[15.5px]"><svg width="1em" height="1em" viewBox="0 0 24 24" class="text-accent mt-1 h-4.5 w-4.5 shrink-0" aria-hidden="true" data-icon="lucide:check"><use href="#ai:lucide:check"></use></svg>Wir fragen keine Details zu deinen Nutzungsgewohnheiten ab.</li></ul></div><div class="card p-6 sm:p-8"><form id="betaForm" novalidate aria-describedby="formIntro"><p id="formIntro" class="text-soft mb-5 text-[14.5px]">Wenige Felder – <strong class="text-ink font-semibold">Vorname/Pseudonym</strong> und <strong class="text-ink font-semibold">E-Mail</strong> genügen für den Anfang.</p><div class="field mb-4"><label for="f-name" class="text-ink mb-1.5 block text-[14.5px] font-semibold">Vorname oder Pseudonym <span class="text-accent" aria-hidden="true">*</span></label><input class="control" type="text" id="f-name" name="name" autocomplete="given-name" required maxlength="60" aria-required="true" aria-describedby="e-name"><span class="error" id="e-name">Bitte gib einen Namen oder ein Pseudonym ein.</span></div><div class="field mb-4"><label for="f-email" class="text-ink mb-1.5 block text-[14.5px] font-semibold">E-Mail-Adresse <span class="text-accent" aria-hidden="true">*</span></label><input class="control" type="email" id="f-email" name="email" autocomplete="email" required inputmode="email" aria-required="true" aria-describedby="e-email" placeholder="name@beispiel.de"><span class="error" id="e-email">Bitte gib eine gültige E-Mail-Adresse ein.</span></div><div class="grid gap-4 sm:grid-cols-2"><div class="field mb-4"><label for="f-windows" class="text-ink mb-1.5 block text-[14.5px] font-semibold">Windows-Version <span class="text-accent" aria-hidden="true">*</span></label><select class="control" id="f-windows" name="windows" required aria-required="true" aria-describedby="e-windows"><option value="" selected disabled>Bitte wählen …</option><option value="Windows 11">Windows 11</option><option value="Windows 10">Windows 10</option><option value="Unsicher / andere">Unsicher oder andere</option></select><span class="error" id="e-windows">Bitte wähle deine Windows-Version.</span></div><div class="field mb-4"><label for="f-browser" class="text-ink mb-1.5 block text-[14.5px] font-semibold">Primärer Browser <span class="text-accent" aria-hidden="true">*</span></label><select class="control" id="f-browser" name="browser" required aria-required="true" aria-describedby="e-browser"><option value="" selected disabled>Bitte wählen …</option><option value="Google Chrome">Google Chrome</option><option value="Microsoft Edge">Microsoft Edge</option><option value="Chrome und Edge">Chrome und Edge</option><option value="Anderer Browser">Anderer Browser</option></select><span class="error" id="e-browser">Bitte wähle deinen primären Browser.</span></div></div><div class="field mb-4"><label for="f-msg" class="text-ink mb-1.5 block text-[14.5px] font-semibold">Was soll Purestate dir im Alltag erleichtern? <span class="text-faint font-medium">(optional)</span></label><textarea class="control" id="f-msg" name="message" maxlength="600" rows="3" placeholder="Optional – ein, zwei Sätze reichen."></textarea></div><div class="field mb-6"><div class="flex items-start gap-3"><input type="checkbox" id="f-privacy" name="privacy" required aria-required="true" aria-describedby="e-privacy" class="mt-1 h-5 w-5 shrink-0 accent-(--accent)"><label for="f-privacy" class="text-soft text-[14.5px]">Ich habe die <a href="/datenschutz/" class="text-accent underline underline-offset-3">Datenschutzhinweise</a> gelesen und bin mit der Kontaktaufnahme zur Beta einverstanden.<span class="text-accent" aria-hidden="true">*</span></label></div><span class="error" id="e-privacy">Bitte bestätige die Datenschutzhinweise.</span></div><button type="submit" class="btn btn-primary w-full py-3 text-[16px]">Für die Beta vormerken</button><p class="form-status text-bad mt-3 text-[14.5px]" id="formStatus" role="status" aria-live="polite"></p><p class="text-faint mt-3 text-[13.5px]">Wir nutzen deine Angaben ausschließlich für die Beta-Kontaktaufnahme.</p></form><div class="text-center" id="formSuccess" hidden><svg width="1em" height="1em" class="text-accent mx-auto h-10 w-10" aria-hidden="true" data-icon="lucide:circle-check"><symbol id="ai:lucide:circle-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12l2 2l4-4"/></g></symbol><use href="#ai:lucide:circle-check"></use></svg><h3 class="text-ink mt-3 text-[18px] font-semibold">Fast geschafft.</h3><p class="text-soft mt-2 text-[15px]">Dein E-Mail-Programm öffnet sich mit einer vorbereiteten Nachricht. Bitte nur noch abschicken – dann melden wir uns mit den nächsten Schritten.</p></div><noscript><p class="text-soft mt-4 text-[14.5px]">Ohne JavaScript kannst du dich direkt per E-Mail vormerken:<a href="mailto:julius.weckowski@gmx.de?subject=Purestate%20Beta" class="text-accent underline">julius.weckowski@gmx.de</a></p></noscript></div></div></div></section><script>
+  (function () {
+    /* -------- Beta form ---------------------------------------------------
+       No backend yet (static hosting). We validate client-side and hand off
+       to the user's mail client via a prefilled mailto:.
+       TODO(backend): to collect submissions server-side, set FORM_ENDPOINT to
+       a same-origin POST URL (e.g. a serverless function). When set, replace
+       the mailto handoff with fetch(FORM_ENDPOINT, { method: "POST", body }).
+       Keep it same-origin so a future CSP form-action 'self' still holds. */
+    const FORM_ENDPOINT = null;
+    const BETA_EMAIL = 'julius.weckowski@gmx.de';
+
+    const form = document.getElementById('betaForm');
+    if (!form) return;
+    const statusEl = document.getElementById('formStatus');
+    const successEl = document.getElementById('formSuccess');
+
+    function setInvalid(id, invalid) {
+      const field = document.getElementById(id).closest('.field');
+      if (field) field.classList.toggle('invalid', invalid);
+    }
+    function emailValid(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+
+    const checks = {
+      'f-name': function (el) {
+        return el.value.trim().length > 0;
+      },
+      'f-email': function (el) {
+        return emailValid(el.value.trim());
+      },
+      'f-windows': function (el) {
+        return !!el.value;
+      },
+      'f-browser': function (el) {
+        return !!el.value;
+      },
+      'f-privacy': function (el) {
+        return el.checked;
+      },
+    };
+
+    function validate(focusFirst) {
+      let firstInvalid = null;
+      Object.keys(checks).forEach(function (id) {
+        const el = document.getElementById(id);
+        const ok = checks[id](el);
+        setInvalid(id, !ok);
+        if (!ok && !firstInvalid) firstInvalid = el;
+      });
+      if (firstInvalid && focusFirst) firstInvalid.focus();
+      return !firstInvalid;
+    }
+
+    /* Validate each field once the user has interacted with it */
+    Object.keys(checks).forEach(function (id) {
+      const el = document.getElementById(id);
+      const evt = el.type === 'checkbox' || el.tagName === 'SELECT' ? 'change' : 'blur';
+      el.addEventListener(evt, function () {
+        setInvalid(id, !checks[id](el));
+      });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      statusEl.textContent = '';
+
+      if (!validate(true)) {
+        statusEl.textContent = 'Bitte prüfe die markierten Felder.';
+        return;
+      }
+
+      const data = {
+        Name: document.getElementById('f-name').value.trim(),
+        'E-Mail': document.getElementById('f-email').value.trim(),
+        Windows: document.getElementById('f-windows').value,
+        Browser: document.getElementById('f-browser').value,
+        Nachricht: document.getElementById('f-msg').value.trim() || '—',
+      };
+
+      if (FORM_ENDPOINT) {
+        /* TODO(backend): real submission path */
+        return;
+      }
+
+      const body = Object.keys(data)
+        .map(function (k) {
+          return k + ': ' + data[k];
+        })
+        .join('\n');
+      const href =
+        'mailto:' +
+        BETA_EMAIL +
+        '?subject=' +
+        encodeURIComponent('Purestate Beta – Vormerkung') +
+        '&body=' +
+        encodeURIComponent(body + '\n\n(Automatisch vorbereitet über purestate-app.com)');
+
+      form.hidden = true;
+      successEl.hidden = false;
+      successEl.setAttribute('tabindex', '-1');
+      successEl.focus();
+      window.location.href = href;
+    });
+  })();
+</script><section id="faq" class="mx-auto max-w-6xl px-5 py-16 sm:py-24" aria-labelledby="faq-h"><div class="max-w-2xl"><p class="mono-label flex items-center gap-2.5" id="faq-h"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span>Häufige Fragen</p><h2 class="display text-ink mt-4 text-[clamp(27px,3.6vw,38px)]">Gut zu <span class="em-strong">wissen</span>.</h2></div><div class="mt-10 max-w-3xl"><details class="qa" open><summary>Ist Purestate kostenlos?</summary><div class="qa-body text-[15px]"><p>Während der geschlossenen Beta ist die Nutzung kostenlos. Es gibt aktuell keine Preiszusage und keinen Kaufzwang.</p>
+</div></details><details class="qa"><summary>Funktioniert Purestate ohne Internet?</summary><div class="qa-body text-[15px]"><p>Die lokalen Schutzschichten (App, Dienst, Hosts-Regeln) arbeiten auch offline. Ein optionales Familien-DNS und die Inhaltsprüfung auf Reddit/Bluesky benötigen eine Internetverbindung.</p>
+</div></details><details class="qa"><summary>Welche Browser werden unterstützt?</summary><div class="qa-body text-[15px]"><p>Chrome und Edge erhalten den vollständigen Companion-Schutz. Firefox erhält nur eingeschränkten Basis-Schutz. Andere Browser werden nicht bzw. nur eingeschränkt unterstützt. Die Beta priorisiert Chrome und Edge.</p>
+</div></details><details class="qa"><summary>Kann ich Purestate wieder entfernen?</summary><div class="qa-body text-[15px]"><p>Ja. Die Deinstallation ist durch dein Passwort und eine bewusste Abkühlzeit geschützt – das ist Absicht, damit Entfernen kein spontaner Impuls ist. Danach lässt sich Purestate vollständig entfernen.</p>
+</div></details><details class="qa"><summary>Was passiert bei vergessenem Passwort?</summary><div class="qa-body text-[15px]"><p>Es gibt keinen Passwort-Reset. Bei Passwortverlust ist ein manueller, technischer Rückbau nötig. Wähle dein Passwort deshalb bewusst und notiere dir bei Bedarf einen Hinweis an einem sicheren Ort.</p>
+</div></details><details class="qa"><summary>Werden Screenshots oder Browserdaten gesammelt?</summary><div class="qa-body text-[15px]"><p>Nein. Purestate erstellt keine Screenshots und sendet keinen Surfverlauf an einen Server. Es gibt keine Telemetrie. Details stehen in der <a href="/datenschutz/">Datenschutzerklärung</a>.</p>
+</div></details><details class="qa"><summary>Kann ein Windows-Administrator Purestate umgehen?</summary><div class="qa-body text-[15px]"><p>Ein entschlossener lokaler Administrator kann den Schutz technisch letztlich entfernen. Purestate erschwert schnelle, impulsive Umgehungen – es verspricht keine absolute technische Unumgehbarkeit.</p>
+</div></details><details class="qa"><summary>Ist Purestate Therapie oder medizinische Hilfe?</summary><div class="qa-body text-[15px]"><p>Nein. Purestate ist ein technisches Hilfsmittel zur freiwilligen Selbstbeschränkung und ersetzt keine Therapie, medizinische Beratung oder professionelle Unterstützung.</p>
+</div></details><details class="qa"><summary>Funktioniert Purestate auf Mac, Android oder iPhone?</summary><div class="qa-body text-[15px]"><p>Nein. Purestate ist aktuell eine reine Windows-Anwendung (Windows 10/11). Versionen für andere Systeme sind derzeit nicht verfügbar.</p>
+</div></details></div></section></main><footer class="border-line bg-bg2 border-t"><div class="mx-auto max-w-6xl px-5 py-12"><div class="grid gap-10 sm:grid-cols-[1.4fr_1fr_1fr]"><div><p class="text-ink flex items-center gap-2.5 text-[17px] font-semibold"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="28" height="28" aria-hidden="true"><defs><linearGradient id="ps-grad-birt7g" x1="72" y1="16" x2="111" y2="112" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#49c3bd"></stop><stop offset="1" stop-color="#2aa8a6"></stop></linearGradient></defs><path d="M56 18 22 34v27c0 25 13.5 45 34 56" fill="none" stroke="var(--logo-left, #123456)" stroke-width="11.5"></path><path d="M72 18 106 34v27c0 25-13.5 45-34 56" fill="none" stroke="url(#ps-grad-birt7g)" stroke-width="11.5"></path><rect x="48" y="51" width="12" height="34" rx="3.5" fill="var(--logo-bars, #0b1b34)"></rect><rect x="68" y="51" width="12" height="34" rx="3.5" fill="var(--logo-bars, #0b1b34)"></rect></svg> Purestate</p><p class="text-soft mt-3 max-w-xs text-[15px]">Werkzeug zur freiwilligen digitalen Selbstbeschränkung für Windows. Alle Verarbeitung erfolgt lokal auf deinem Gerät.</p></div><nav aria-label="Produkt"><h2 class="mono-label">Produkt</h2><ul class="mt-3 space-y-2 text-[15px]"><li><a class="text-soft hover:text-ink" href="/#how">So funktioniert es</a></li><li><a class="text-soft hover:text-ink" href="/#why">Warum anders</a></li><li><a class="text-soft hover:text-ink" href="/#browsers">Browser</a></li><li><a class="text-soft hover:text-ink" href="/#beta">Beta</a></li></ul></nav><nav aria-label="Rechtliches"><h2 class="mono-label">Rechtliches</h2><ul class="mt-3 space-y-2 text-[15px]"><li><a class="text-soft hover:text-ink" href="/datenschutz/">Datenschutz</a></li><li><a class="text-soft hover:text-ink" href="/impressum/">Impressum</a></li><li><a class="text-soft hover:text-ink" href="/beta-hinweise/">Beta-Hinweise</a></li><li><a class="text-soft hover:text-ink" href="mailto:julius.weckowski@gmx.de">Kontakt</a></li></ul></nav></div><div class="text-faint flex flex-wrap items-center gap-x-4 gap-y-2 text-[14px] border-line mt-10 border-t pt-6"><span>© 2026 Purestate · Freiwillige Selbstbeschränkung, lokal auf deinem Gerät.</span></div></div></footer><script>
+      (function () {
+        const root = document.documentElement;
+        const toggle = document.getElementById('themeToggle');
+        if (toggle) {
+          toggle.addEventListener('click', function () {
+            let current = root.getAttribute('data-theme');
+            if (!current) {
+              current = window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+            }
+            const next = current === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            try {
+              localStorage.setItem('purestate-theme', next);
+            } catch {
+              /* not persisted */
+            }
+          });
+        }
+
+        const navBtn = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (navBtn && navMenu) {
+          navBtn.addEventListener('click', function () {
+            const open = navBtn.getAttribute('aria-expanded') === 'true';
+            navBtn.setAttribute('aria-expanded', String(!open));
+            navMenu.classList.toggle('hidden', open);
+          });
+          navMenu.querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', function () {
+              navBtn.setAttribute('aria-expanded', 'false');
+              navMenu.classList.add('hidden');
+            });
+          });
+        }
+      })();
+    </script></body></html>

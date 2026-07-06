@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Purestate – Freiwillige Selbstbeschränkung für Windows">
+  <defs>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#49c3bd"/>
+      <stop offset="1" stop-color="#2aa8a6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="0%" r="90%">
+      <stop offset="0" stop-color="#2aa8a6" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#2aa8a6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#060e1c"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(96 120) scale(1.35)">
+    <path d="M56 18 22 34v27c0 25 13.5 45 34 56" fill="none" stroke="#2a3d5e" stroke-width="11.5"/>
+    <path d="M72 18 106 34v27c0 25-13.5 45-34 56" fill="none" stroke="url(#teal)" stroke-width="11.5"/>
+    <rect x="48" y="51" width="12" height="34" rx="3.5" fill="#e9eef7"/>
+    <rect x="68" y="51" width="12" height="34" rx="3.5" fill="#e9eef7"/>
+  </g>
+  <text x="96" y="400" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="64" font-weight="700" fill="#e9eef7" letter-spacing="-1.5">Purestate</text>
+  <text x="96" y="465" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="34" font-weight="400" fill="#aab8cd">Eine bewusste Hürde zwischen Impuls und Entscheidung.</text>
+  <text x="96" y="540" font-family="Segoe UI, Inter, Arial, sans-serif" font-size="24" font-weight="500" fill="#49c3bd">Windows 10/11 · Chrome &amp; Edge · lokale Verarbeitung</text>
+</svg>

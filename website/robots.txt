@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://purestate-app.com/sitemap.xml
+Sitemap: https://purestate-app.com/sitemap-index.xml

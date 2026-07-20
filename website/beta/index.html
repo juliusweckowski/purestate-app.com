@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="theme-color" content="#f5f7fa" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#060e1c" media="(prefers-color-scheme: dark)"><title>Beta &amp; Installation – Version, Prüfsumme, Systemvoraussetzungen | Purestate</title><meta name="description" content="Purestate Geschlossene Beta v0.62.46: Vormerkung, Systemvoraussetzungen, Installationsschritte, SHA-256-Prüfsumme und lokale Dateiprüfung im Browser."><link rel="canonical" href="https://purestate-app.com/beta/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="sitemap" href="/sitemap-index.xml"><meta property="og:title" content="Beta &amp; Installation – Version, Prüfsumme, Systemvoraussetzungen | Purestate"><meta property="og:description" content="Purestate Geschlossene Beta v0.62.46: Vormerkung, Systemvoraussetzungen, Installationsschritte, SHA-256-Prüfsumme und lokale Dateiprüfung im Browser."><meta property="og:type" content="website"><meta property="og:locale" content="de_DE"><meta property="og:url" content="https://purestate-app.com/beta/"><meta property="og:site_name" content="Purestate"><meta property="og:image" content="https://purestate-app.com/og-image.svg"><meta name="twitter:card" content="summary"><script>
+      /* Set theme before first paint to avoid a flash. Only "light"/"dark";
+         when nothing is stored we fall back to the OS setting via CSS. */
+      (function () {
+        try {
+          const t = localStorage.getItem('purestate-theme');
+          if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        } catch {
+          /* private mode etc. — OS preference applies */
+        }
+      })();
+    </script><link rel="stylesheet" href="/_astro/PauseMark.aaxzlcvH.css"><style>.checksum-value[data-astro-cid-h6an5cc2]{font-family:var(--font-mono);letter-spacing:.04em;color:var(--ink);word-break:break-all;background:var(--bg-2);border:1px solid var(--line);user-select:all;border-radius:4px;padding:.6rem .8rem;font-size:13px}.result-box[data-astro-cid-h6an5cc2]{border:1px solid var(--line);border-radius:4px;padding:.9rem 1rem;font-size:14.5px}.result-box[data-astro-cid-h6an5cc2].ok{border-color:var(--ok);color:var(--ink)}.result-box[data-astro-cid-h6an5cc2].bad{border-color:var(--bad);color:var(--ink)}.result-box[data-astro-cid-h6an5cc2] .headline[data-astro-cid-h6an5cc2]{align-items:center;gap:.5rem;font-weight:600;display:flex}.result-box[data-astro-cid-h6an5cc2].ok .headline[data-astro-cid-h6an5cc2]{color:var(--ok)}.result-box[data-astro-cid-h6an5cc2].bad .headline[data-astro-cid-h6an5cc2]{color:var(--bad)}.result-box[data-astro-cid-h6an5cc2] .hash[data-astro-cid-h6an5cc2]{font-family:var(--font-mono);word-break:break-all;color:var(--soft);margin-top:.4rem;font-size:12px}
+</style></head><body><a href="#main" class="focus:bg-surface focus:text-ink sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:px-4 focus:py-2 focus:shadow-lg">Zum Inhalt springen</a><header class="border-line bg-bg/85 sticky top-0 z-40 border-b backdrop-blur-md" data-astro-cid-fzpbxy5g><div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5" data-astro-cid-fzpbxy5g><a href="/" class="text-ink flex items-center gap-2.5 text-[17px] font-semibold tracking-tight" aria-label="Purestate – Startseite" data-astro-cid-fzpbxy5g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="30" height="30" aria-hidden="true"><defs><linearGradient id="ps-grad-nn9ugz" x1="72" y1="16" x2="111" y2="112" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#49c3bd"></stop><stop offset="1" stop-color="#2aa8a6"></stop></linearGradient></defs><path d="M56 18 22 34v27c0 25 13.5 45 34 56" fill="none" stroke="var(--logo-left, #123456)" stroke-width="11.5"></path><path d="M72 18 106 34v27c0 25-13.5 45-34 56" fill="none" stroke="url(#ps-grad-nn9ugz)" stroke-width="11.5"></path><rect x="48" y="51" width="12" height="34" rx="3.5" fill="var(--logo-bars, #0b1b34)"></rect><rect x="68" y="51" width="12" height="34" rx="3.5" fill="var(--logo-bars, #0b1b34)"></rect></svg>Purestate</a><nav class="hidden items-center gap-6 lg:gap-7 md:flex" aria-label="Hauptnavigation" data-astro-cid-fzpbxy5g><a href="/funktionen/" class="text-[15px] font-medium transition-colors text-soft hover:text-ink" data-astro-cid-fzpbxy5g>Funktionen</a><a href="/so-funktioniert-es/" class="text-[15px] font-medium transition-colors text-soft hover:text-ink" data-astro-cid-fzpbxy5g>So funktioniert es</a><a href="/privatsphaere/" class="text-[15px] font-medium transition-colors text-soft hover:text-ink" data-astro-cid-fzpbxy5g>Privatsphäre</a><a href="/changelog/" class="text-[15px] font-medium transition-colors text-soft hover:text-ink" data-astro-cid-fzpbxy5g>Changelog</a><a href="/hilfe/" class="text-[15px] font-medium transition-colors text-soft hover:text-ink" data-astro-cid-fzpbxy5g>Hilfe</a></nav><div class="flex items-center gap-2.5" data-astro-cid-fzpbxy5g><button id="themeToggle" type="button" class="border-line text-soft hover:border-line-strong hover:text-ink flex h-11 w-11 items-center justify-center rounded-lg border transition-colors" aria-label="Helles oder dunkles Design wählen" title="Design wechseln" data-astro-cid-fzpbxy5g><svg class="theme-sun h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-fzpbxy5g><circle cx="12" cy="12" r="4" data-astro-cid-fzpbxy5g></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" data-astro-cid-fzpbxy5g></path></svg><svg class="theme-moon h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" data-astro-cid-fzpbxy5g><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" data-astro-cid-fzpbxy5g></path></svg></button><a href="/beta/" class="btn btn-primary hidden sm:inline-flex" data-astro-cid-fzpbxy5g>Für Beta vormerken</a><button id="navToggle" type="button" class="border-line text-soft hover:text-ink flex h-11 w-11 items-center justify-center rounded-lg border md:hidden" aria-expanded="false" aria-controls="navMenu" aria-label="Menü öffnen oder schließen" data-astro-cid-fzpbxy5g><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" data-astro-cid-fzpbxy5g><path d="M3 6h18M3 12h18M3 18h18" data-astro-cid-fzpbxy5g></path></svg></button></div></div><nav id="navMenu" class="border-line bg-bg hidden border-t px-5 py-3 md:!hidden" aria-label="Mobiles Menü" data-astro-cid-fzpbxy5g><ul class="flex flex-col" data-astro-cid-fzpbxy5g><li data-astro-cid-fzpbxy5g><a href="/funktionen/" class="text-soft hover:text-ink block py-2.5 text-[15.5px] font-medium" data-astro-cid-fzpbxy5g>Funktionen</a></li><li data-astro-cid-fzpbxy5g><a href="/so-funktioniert-es/" class="text-soft hover:text-ink block py-2.5 text-[15.5px] font-medium" data-astro-cid-fzpbxy5g>So funktioniert es</a></li><li data-astro-cid-fzpbxy5g><a href="/privatsphaere/" class="text-soft hover:text-ink block py-2.5 text-[15.5px] font-medium" data-astro-cid-fzpbxy5g>Privatsphäre</a></li><li data-astro-cid-fzpbxy5g><a href="/changelog/" class="text-soft hover:text-ink block py-2.5 text-[15.5px] font-medium" data-astro-cid-fzpbxy5g>Changelog</a></li><li data-astro-cid-fzpbxy5g><a href="/hilfe/" class="text-soft hover:text-ink block py-2.5 text-[15.5px] font-medium" data-astro-cid-fzpbxy5g>Hilfe</a></li><li data-astro-cid-fzpbxy5g><a href="/beta/" class="text-accent block py-2.5 text-[15.5px] font-semibold" data-astro-cid-fzpbxy5g>Für Beta vormerken →</a></li></ul></nav></header><main id="main"><section class="border-line border-b"><div class="mx-auto max-w-6xl px-5 pt-14 pb-10 sm:pt-20 sm:pb-14"><p class="mono-label flex items-center gap-2.5"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span>Geschlossene Beta</p><h1 class="display text-ink mt-5 max-w-3xl text-[clamp(32px,4.6vw,52px)]">Aktueller Stand, ehrlich <span class="em-strong">dokumentiert</span>.</h1><p class="text-soft mt-6 max-w-2xl text-[17px]">Purestate ist in einer geschlossenen Beta für den deutschsprachigen Raum. Hier findest du alles, was du vor und nach der Vormerkung brauchst – inklusive Prüfsumme des aktuellen Pakets.</p><dl class="border-line mt-10 grid grid-cols-2 gap-x-8 gap-y-4 border-t pt-5 sm:grid-cols-3"><div><dt class="mono-label !text-[11px]">Version</dt><dd class="text-ink mt-1 font-mono text-[13.5px] break-words">v0.62.46</dd></div><div><dt class="mono-label !text-[11px]">Kanal</dt><dd class="text-ink mt-1 font-mono text-[13.5px] break-words">Geschlossene Beta</dd></div><div><dt class="mono-label !text-[11px]">Paket</dt><dd class="text-ink mt-1 font-mono text-[13.5px] break-words">Purestate-Windows-v0.62.46.zip</dd></div><div><dt class="mono-label !text-[11px]">Größe</dt><dd class="text-ink mt-1 font-mono text-[13.5px] break-words">739 KB</dd></div><div><dt class="mono-label !text-[11px]">Windows</dt><dd class="text-ink mt-1 font-mono text-[13.5px] break-words">Windows 10 und 11 (64-Bit)</dd></div><div><dt class="mono-label !text-[11px]">Browser</dt><dd class="text-ink mt-1 font-mono text-[13.5px] break-words">Chrome und Edge (voller Schutz), Firefox (Basis-Schutz)</dd></div></dl></div></section><section class="mx-auto max-w-6xl px-5 py-14 sm:py-20" aria-labelledby="install-h"><div class="max-w-2xl"><p class="mono-label flex items-center gap-2.5" id="install-h"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span>Installation</p><h2 class="display text-ink mt-4 text-[clamp(27px,3.6vw,38px)]">Fünf Schritte bis zur ersten <span class="em-strong">Grenze</span>.</h2></div><ol class="mt-10 max-w-3xl"><li class="relative flex gap-6 pb-9 last:pb-0 sm:gap-8"><span class="bg-line absolute top-10 bottom-2 left-[19px] w-px" aria-hidden="true"></span><span class="border-line-strong bg-surface text-accent flex h-10 w-10 shrink-0 items-center justify-center rounded-full border font-mono text-[14px] font-medium" aria-hidden="true">1</span><div class="pt-1.5"><h3 class="text-ink text-[17px] font-semibold">Beta-Paket erhalten</h3><p class="text-soft mt-1.5 text-[15px]">Nach der Vormerkung bekommst du das ZIP-Paket samt Prüfsumme per E-Mail. Es gibt bewusst keinen öffentlichen Download, solange die Beta geschlossen ist.</p></div></li><li class="relative flex gap-6 pb-9 last:pb-0 sm:gap-8"><span class="bg-line absolute top-10 bottom-2 left-[19px] w-px" aria-hidden="true"></span><span class="border-line-strong bg-surface text-accent flex h-10 w-10 shrink-0 items-center justify-center rounded-full border font-mono text-[14px] font-medium" aria-hidden="true">2</span><div class="pt-1.5"><h3 class="text-ink text-[17px] font-semibold">Prüfsumme kontrollieren</h3><p class="text-soft mt-1.5 text-[15px]">Vergleiche die SHA-256-Prüfsumme – direkt hier im Browser oder mit PowerShell (Get-FileHash).</p></div></li><li class="relative flex gap-6 pb-9 last:pb-0 sm:gap-8"><span class="bg-line absolute top-10 bottom-2 left-[19px] w-px" aria-hidden="true"></span><span class="border-line-strong bg-surface text-accent flex h-10 w-10 shrink-0 items-center justify-center rounded-full border font-mono text-[14px] font-medium" aria-hidden="true">3</span><div class="pt-1.5"><h3 class="text-ink text-[17px] font-semibold">„Installieren.exe&quot; starten</h3><p class="text-soft mt-1.5 text-[15px]">Bestätige die Windows-Abfrage für Administrator-Rechte. Ein optionaler Vorabcheck prüft Paket, Windows-Werkzeuge und vorhandene Installation.</p></div></li><li class="relative flex gap-6 pb-9 last:pb-0 sm:gap-8"><span class="bg-line absolute top-10 bottom-2 left-[19px] w-px" aria-hidden="true"></span><span class="border-line-strong bg-surface text-accent flex h-10 w-10 shrink-0 items-center justify-center rounded-full border font-mono text-[14px] font-medium" aria-hidden="true">4</span><div class="pt-1.5"><h3 class="text-ink text-[17px] font-semibold">Passwort festlegen</h3><p class="text-soft mt-1.5 text-[15px]">Dein Passwort schützt alle Einstellungen. Wichtig: Es gibt keinen Passwort-Reset – wähle es bewusst.</p></div></li><li class="relative flex gap-6 pb-9 last:pb-0 sm:gap-8"><span class="border-line-strong bg-surface text-accent flex h-10 w-10 shrink-0 items-center justify-center rounded-full border font-mono text-[14px] font-medium" aria-hidden="true">5</span><div class="pt-1.5"><h3 class="text-ink text-[17px] font-semibold">Companion wird verwaltet</h3><p class="text-soft mt-1.5 text-[15px]">Die Browsererweiterung für Chrome und Edge richtet Purestate über die Browser-Richtlinie ein – du musst nichts manuell installieren.</p></div></li></ol></section><section class="border-line bg-bg2 border-y" aria-labelledby="verify-h"><div class="mx-auto max-w-6xl px-5 py-14 sm:py-20"><div class="max-w-2xl"><p class="mono-label flex items-center gap-2.5" id="verify-h"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span>Vertrauen, überprüfbar</p><h2 class="display text-ink mt-4 text-[clamp(27px,3.6vw,38px)]">Die Prüfsumme gehört zur <span class="em-strong">Grenze</span> dazu.</h2><p class="text-soft mt-4 text-[16.5px]">Jedes Beta-Paket wird mit seiner SHA-256-Prüfsumme veröffentlicht. So erkennst du unvollständige Downloads oder veränderte Dateien, bevor du installierst.</p></div><div class="mt-10 max-w-3xl"><div class="card p-6 sm:p-8" id="checksum" data-astro-cid-h6an5cc2><h3 class="text-ink text-[18px] font-semibold" data-astro-cid-h6an5cc2>Datei direkt im Browser prüfen</h3><p class="text-soft mt-2 text-[15px]" data-astro-cid-h6an5cc2>Wähle deine heruntergeladene Datei <code class="bg-bg2 border-line rounded border px-1.5 py-0.5 font-mono text-[13px]" data-astro-cid-h6an5cc2>Purestate-Windows-v0.62.46.zip</code> aus. Dein Browser berechnet die SHA-256-Prüfsumme lokal und vergleicht sie mit der veröffentlichten – die Datei wird dabei <strong class="text-ink" data-astro-cid-h6an5cc2>nicht hochgeladen</strong>.</p><div class="mt-5" data-astro-cid-h6an5cc2><p class="mono-label" data-astro-cid-h6an5cc2>Veröffentlichte Prüfsumme (SHA-256)</p><p class="checksum-value mt-2" id="expectedHash" data-astro-cid-h6an5cc2>0de245968982e5b993af2e78e9107389c6bd5b31a3c84dce7694a4cd59c8c754</p></div><div class="mt-6 flex flex-wrap items-center gap-3" data-astro-cid-h6an5cc2><label class="btn btn-primary cursor-pointer" for="checksumFile" data-astro-cid-h6an5cc2>Datei auswählen<input type="file" id="checksumFile" class="sr-only" data-astro-cid-h6an5cc2></label><span class="text-faint text-[14px]" id="fileName" data-astro-cid-h6an5cc2>Keine Datei ausgewählt</span></div><div class="mt-5 hidden" id="checksumProgress" data-astro-cid-h6an5cc2><div class="border-line h-2 overflow-hidden rounded-full border" role="progressbar" aria-labelledby="progressLabel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBar" data-astro-cid-h6an5cc2><div class="bg-accent h-full w-0 transition-[width] duration-150 ease-out" id="progressFill" data-astro-cid-h6an5cc2></div></div><p class="text-faint mt-2 font-mono text-[12.5px]" id="progressLabel" data-astro-cid-h6an5cc2>Datei wird gelesen …</p></div><div class="mt-5" id="checksumResult" role="status" aria-live="polite" data-astro-cid-h6an5cc2></div><noscript><p class="text-soft mt-4 text-[14.5px]" data-astro-cid-h6an5cc2>Ohne JavaScript kannst du die Prüfsumme mit Windows-Bordmitteln vergleichen: PowerShell öffnen und <code class="bg-bg2 border-line rounded border px-1.5 py-0.5 font-mono text-[13px]" data-astro-cid-h6an5cc2>Get-FileHash .\Purestate-Windows-v0.62.46.zip</code> ausführen.</p></noscript></div><script>
+  (function () {
+    const input = document.getElementById('checksumFile');
+    if (!input) return;
+    const expected = document.getElementById('expectedHash').textContent.trim().toLowerCase();
+    const fileName = document.getElementById('fileName');
+    const progress = document.getElementById('checksumProgress');
+    const progressBar = document.getElementById('progressBar');
+    const progressFill = document.getElementById('progressFill');
+    const progressLabel = document.getElementById('progressLabel');
+    const result = document.getElementById('checksumResult');
+
+    function setProgress(pct, label) {
+      progressBar.setAttribute('aria-valuenow', String(Math.round(pct)));
+      progressFill.style.width = pct + '%';
+      if (label) progressLabel.textContent = label;
+    }
+
+    function show(kind, headline, detail) {
+      result.innerHTML = '';
+      const box = document.createElement('div');
+      box.className = 'result-box ' + kind;
+      const h = document.createElement('p');
+      h.className = 'headline';
+      h.textContent = headline;
+      box.appendChild(h);
+      if (detail) {
+        const d = document.createElement('p');
+        d.className = 'hash';
+        d.textContent = detail;
+        box.appendChild(d);
+      }
+      result.appendChild(box);
+    }
+
+    input.addEventListener('change', async function () {
+      const file = input.files && input.files[0];
+      if (!file) return;
+      fileName.textContent = file.name + ' (' + Math.round(file.size / 1024) + ' KB)';
+      result.innerHTML = '';
+
+      if (!window.crypto || !window.crypto.subtle) {
+        show(
+          'bad',
+          'Dein Browser unterstützt die lokale Prüfung nicht.',
+          'Bitte nutze einen aktuellen Browser oder PowerShell: Get-FileHash',
+        );
+        return;
+      }
+      if (file.size > 512 * 1024 * 1024) {
+        show(
+          'bad',
+          'Datei ist größer als 512 MB.',
+          'Für sehr große Dateien nutze bitte PowerShell: Get-FileHash',
+        );
+        return;
+      }
+
+      progress.classList.remove('hidden');
+      setProgress(0, 'Datei wird gelesen …');
+
+      try {
+        /* Read in chunks so the progress bar reflects real work and the
+           UI stays responsive; SubtleCrypto then hashes the whole buffer. */
+        const buffer = new Uint8Array(file.size);
+        const reader = file.stream().getReader();
+        let offset = 0;
+        for (;;) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer.set(value, offset);
+          offset += value.length;
+          setProgress((offset / file.size) * 90);
+        }
+        setProgress(95, 'Prüfsumme wird berechnet …');
+        const digest = await crypto.subtle.digest('SHA-256', buffer.buffer);
+        const hash = Array.from(new Uint8Array(digest))
+          .map(function (b) {
+            return b.toString(16).padStart(2, '0');
+          })
+          .join('');
+        setProgress(100, 'Fertig.');
+
+        if (hash === expected) {
+          show(
+            'ok',
+            'Prüfsumme stimmt überein.',
+            'Berechnet: ' + hash,
+          );
+        } else {
+          show(
+            'bad',
+            'Prüfsumme weicht ab – Datei nicht verwenden.',
+            'Berechnet: ' +
+              hash +
+              ' — Mögliche Ursachen: unvollständiger Download, andere Version oder veränderte Datei. Lade das Paket erneut aus deiner Beta-E-Mail herunter.',
+          );
+        }
+      } catch (err) {
+        show(
+          'bad',
+          'Die Datei konnte nicht gelesen werden.',
+          'Bitte versuche es erneut. Fehler: ' + (err && err.message ? err.message : String(err)),
+        );
+      } finally {
+        setTimeout(function () {
+          progress.classList.add('hidden');
+          setProgress(0, 'Datei wird gelesen …');
+        }, 1200);
+      }
+    });
+  })();
+</script></div></div></section><section class="mx-auto max-w-6xl px-5 py-14 sm:py-20" aria-labelledby="warn-h"><div class="max-w-2xl"><p class="mono-label flex items-center gap-2.5" id="warn-h"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span>Gut zu wissen, bevor du installierst</p><h2 class="display text-ink mt-4 text-[clamp(27px,3.6vw,38px)]">Keine Überraschungen – auch nicht <span class="em-strong">kleine</span>.</h2></div><div class="mt-10 grid gap-x-14 sm:grid-cols-2"><article class="border-line border-t py-5"><h3 class="text-ink text-[16.5px] font-semibold">Windows-Warnung möglich</h3><p class="text-soft mt-1.5 text-[14.5px]">Das Beta-Paket ist derzeit nicht codesigniert. Windows SmartScreen kann deshalb beim ersten Start eine Warnung anzeigen. Prüfe in dem Fall die SHA-256-Prüfsumme – sie belegt, dass die Datei unverändert aus der Beta-Quelle stammt.</p></article><article class="border-line border-t py-5"><h3 class="text-ink text-[16.5px] font-semibold">Administratorrechte erforderlich</h3><p class="text-soft mt-1.5 text-[14.5px]">Purestate richtet systemweite Schutzschichten ein (Hosts, Richtlinien, Dienst) und braucht dafür bei der Installation Administratorrechte.</p></article><article class="border-line border-t py-5"><h3 class="text-ink text-[16.5px] font-semibold">Entfernen braucht Zeit – absichtlich</h3><p class="text-soft mt-1.5 text-[14.5px]">Pausieren, Abschwächen und Deinstallation verlangen Passwort, Bestätigung und Abkühlzeit. Ein entschlossener lokaler Administrator kann lokale Software letztlich entfernen – Purestate ist eine freiwillige Hürde, kein Zwangssystem.</p></article><article class="border-line border-t py-5"><h3 class="text-ink text-[16.5px] font-semibold">Purestate verändert Systemregeln</h3><p class="text-soft mt-1.5 text-[14.5px]">Hosts-Datei, DNS-Profil, Browser-Richtlinien und ein Windows-Dienst werden eingerichtet. Die Diagnose- und Reparaturwerkzeuge der App machen den Zustand jederzeit sichtbar.</p></article></div></section><section id="beta" class="border-line bg-bg2 border-y" aria-labelledby="beta-h"><div class="mx-auto max-w-6xl px-5 py-16 sm:py-24"><div class="grid gap-12 lg:grid-cols-[1fr_1.1fr]"><div><p class="mono-label flex items-center gap-2.5"><span class="pause-mark text-[13px]" aria-hidden="true"><i></i><i></i></span> Geschlossene Beta</p><h2 id="beta-h" class="display text-ink mt-4 text-[clamp(27px,3.6vw,38px)]">Für die DACH-Beta <span class="em-strong">vormerken</span>.</h2><p class="text-soft mt-4 text-[16.5px]">Purestate ist in einer geschlossenen Beta. Gesucht werden Windows-10/11-Nutzer mit Chrome oder Edge, die eine ruhige, freiwillige Hürde ausprobieren möchten.</p><ul class="mt-6 space-y-3" role="list"><li class="text-soft flex items-start gap-2.5 text-[15.5px]"><svg width="1em" height="1em" class="text-accent mt-1 h-4.5 w-4.5 shrink-0" aria-hidden="true" data-icon="lucide:check"><symbol id="ai:lucide:check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></symbol><use href="#ai:lucide:check"></use></svg>Dein Feedback verbessert Installation, Schutz und Alltagstauglichkeit.</li><li class="text-soft flex items-start gap-2.5 text-[15.5px]"><svg width="1em" height="1em" viewBox="0 0 24 24" class="text-accent mt-1 h-4.5 w-4.5 shrink-0" aria-hidden="true" data-icon="lucide:check"><use href="#ai:lucide:check"></use></svg>Aktuell keine Preiszusage und kein Kaufzwang.</li><li class="text-soft flex items-start gap-2.5 text-[15.5px]"><svg width="1em" height="1em" viewBox="0 0 24 24" class="text-accent mt-1 h-4.5 w-4.5 shrink-0" aria-hidden="true" data-icon="lucide:check"><use href="#ai:lucide:check"></use></svg>Du erhältst klare Installations- und Rückmeldeinformationen.</li><li class="text-soft flex items-start gap-2.5 text-[15.5px]"><svg width="1em" height="1em" viewBox="0 0 24 24" class="text-accent mt-1 h-4.5 w-4.5 shrink-0" aria-hidden="true" data-icon="lucide:check"><use href="#ai:lucide:check"></use></svg>Wir fragen keine Details zu deinen Nutzungsgewohnheiten ab.</li></ul></div><div class="card p-6 sm:p-8"><form id="betaForm" novalidate aria-describedby="formIntro"><p id="formIntro" class="text-soft mb-5 text-[14.5px]">Wenige Felder – <strong class="text-ink font-semibold">Vorname/Pseudonym</strong> und <strong class="text-ink font-semibold">E-Mail</strong> genügen für den Anfang.</p><div class="field mb-4"><label for="f-name" class="text-ink mb-1.5 block text-[14.5px] font-semibold">Vorname oder Pseudonym <span class="text-accent" aria-hidden="true">*</span></label><input class="control" type="text" id="f-name" name="name" autocomplete="given-name" required maxlength="60" aria-required="true" aria-describedby="e-name"><span class="error" id="e-name">Bitte gib einen Namen oder ein Pseudonym ein.</span></div><div class="field mb-4"><label for="f-email" class="text-ink mb-1.5 block text-[14.5px] font-semibold">E-Mail-Adresse <span class="text-accent" aria-hidden="true">*</span></label><input class="control" type="email" id="f-email" name="email" autocomplete="email" required inputmode="email" aria-required="true" aria-describedby="e-email" placeholder="name@beispiel.de"><span class="error" id="e-email">Bitte gib eine gültige E-Mail-Adresse ein.</span></div><div class="grid gap-4 sm:grid-cols-2"><div class="field mb-4"><label for="f-windows" class="text-ink mb-1.5 block text-[14.5px] font-semibold">Windows-Version <span class="text-accent" aria-hidden="true">*</span></label><select class="control" id="f-windows" name="windows" required aria-required="true" aria-describedby="e-windows"><option value="" selected disabled>Bitte wählen …</option><option value="Windows 11">Windows 11</option><option value="Windows 10">Windows 10</option><option value="Unsicher / andere">Unsicher oder andere</option></select><span class="error" id="e-windows">Bitte wähle deine Windows-Version.</span></div><div class="field mb-4"><label for="f-browser" class="text-ink mb-1.5 block text-[14.5px] font-semibold">Primärer Browser <span class="text-accent" aria-hidden="true">*</span></label><select class="control" id="f-browser" name="browser" required aria-required="true" aria-describedby="e-browser"><option value="" selected disabled>Bitte wählen …</option><option value="Google Chrome">Google Chrome</option><option value="Microsoft Edge">Microsoft Edge</option><option value="Chrome und Edge">Chrome und Edge</option><option value="Anderer Browser">Anderer Browser</option></select><span class="error" id="e-browser">Bitte wähle deinen primären Browser.</span></div></div><div class="field mb-4"><label for="f-msg" class="text-ink mb-1.5 block text-[14.5px] font-semibold">Was soll Purestate dir im Alltag erleichtern? <span class="text-faint font-medium">(optional)</span></label><textarea class="control" id="f-msg" name="message" maxlength="600" rows="3" placeholder="Optional – ein, zwei Sätze reichen."></textarea></div><div class="field mb-6"><div class="flex items-start gap-3"><input type="checkbox" id="f-privacy" name="privacy" required aria-required="true" aria-describedby="e-privacy" class="mt-1 h-5 w-5 shrink-0 accent-(--accent)"><label for="f-privacy" class="text-soft text-[14.5px]">Ich habe die <a href="/datenschutz/" class="text-accent underline underline-offset-3">Datenschutzhinweise</a> gelesen und bin mit der Kontaktaufnahme zur Beta einverstanden.<span class="text-accent" aria-hidden="true">*</span></label></div><span class="error" id="e-privacy">Bitte bestätige die Datenschutzhinweise.</span></div><button type="submit" class="btn btn-primary w-full py-3 text-[16px]">Für die Beta vormerken</button><p class="form-status text-bad mt-3 text-[14.5px]" id="formStatus" role="status" aria-live="polite"></p><p class="text-faint mt-3 text-[13.5px]">Wir nutzen deine Angaben ausschließlich für die Beta-Kontaktaufnahme.</p></form><div class="text-center" id="formSuccess" hidden><svg width="1em" height="1em" class="text-accent mx-auto h-10 w-10" aria-hidden="true" data-icon="lucide:circle-check"><symbol id="ai:lucide:circle-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12l2 2l4-4"/></g></symbol><use href="#ai:lucide:circle-check"></use></svg><h3 class="text-ink mt-3 text-[18px] font-semibold">Fast geschafft.</h3><p class="text-soft mt-2 text-[15px]">Dein E-Mail-Programm öffnet sich mit einer vorbereiteten Nachricht. Bitte nur noch abschicken – dann melden wir uns mit den nächsten Schritten.</p></div><noscript><p class="text-soft mt-4 text-[14.5px]">Ohne JavaScript kannst du dich direkt per E-Mail vormerken:<a href="mailto:purestateapp@gmail.com?subject=Purestate%20Beta" class="text-accent underline">purestateapp@gmail.com</a></p></noscript></div></div></div></section><script>
+  (function () {
+    /* -------- Beta form ---------------------------------------------------
+       No backend yet (static hosting). We validate client-side and hand off
+       to the user's mail client via a prefilled mailto:.
+       TODO(backend): to collect submissions server-side, set FORM_ENDPOINT to
+       a same-origin POST URL (e.g. a serverless function). When set, replace
+       the mailto handoff with fetch(FORM_ENDPOINT, { method: "POST", body }).
+       Keep it same-origin so a future CSP form-action 'self' still holds. */
+    const FORM_ENDPOINT = null;
+    const BETA_EMAIL = 'purestateapp@gmail.com';
+
+    const form = document.getElementById('betaForm');
+    if (!form) return;
+    const statusEl = document.getElementById('formStatus');
+    const successEl = document.getElementById('formSuccess');
+
+    function setInvalid(id, invalid) {
+      const field = document.getElementById(id).closest('.field');
+      if (field) field.classList.toggle('invalid', invalid);
+    }
+    function emailValid(v) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    }
+
+    const checks = {
+      'f-name': function (el) {
+        return el.value.trim().length > 0;
+      },
+      'f-email': function (el) {
+        return emailValid(el.value.trim());
+      },
+      'f-windows': function (el) {
+        return !!el.value;
+      },
+      'f-browser': function (el) {
+        return !!el.value;
+      },
+      'f-privacy': function (el) {
+        return el.checked;
+      },
+    };
+
+    function validate(focusFirst) {
+      let firstInvalid = null;
+      Object.keys(checks).forEach(function (id) {
+        const el = document.getElementById(id);
+        const ok = checks[id](el);
+        setInvalid(id, !ok);
+        if (!ok && !firstInvalid) firstInvalid = el;
+      });
+      if (firstInvalid && focusFirst) firstInvalid.focus();
+      return !firstInvalid;
+    }
+
+    /* Validate each field once the user has interacted with it */
+    Object.keys(checks).forEach(function (id) {
+      const el = document.getElementById(id);
+      const evt = el.type === 'checkbox' || el.tagName === 'SELECT' ? 'change' : 'blur';
+      el.addEventListener(evt, function () {
+        setInvalid(id, !checks[id](el));
+      });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      statusEl.textContent = '';
+
+      if (!validate(true)) {
+        statusEl.textContent = 'Bitte prüfe die markierten Felder.';
+        return;
+      }
+
+      const data = {
+        Name: document.getElementById('f-name').value.trim(),
+        'E-Mail': document.getElementById('f-email').value.trim(),
+        Windows: document.getElementById('f-windows').value,
+        Browser: document.getElementById('f-browser').value,
+        Nachricht: document.getElementById('f-msg').value.trim() || '—',
+      };
+
+      if (FORM_ENDPOINT) {
+        /* TODO(backend): real submission path */
+        return;
+      }
+
+      const body = Object.keys(data)
+        .map(function (k) {
+          return k + ': ' + data[k];
+        })
+        .join('\n');
+      const href =
+        'mailto:' +
+        BETA_EMAIL +
+        '?subject=' +
+        encodeURIComponent('Purestate Beta – Vormerkung') +
+        '&body=' +
+        encodeURIComponent(body + '\n\n(Automatisch vorbereitet über purestate-app.com)');
+
+      form.hidden = true;
+      successEl.hidden = false;
+      successEl.setAttribute('tabindex', '-1');
+      successEl.focus();
+      window.location.href = href;
+    });
+  })();
+</script></main><footer class="border-line bg-bg2 border-t"><div class="mx-auto max-w-6xl px-5 py-12"><div class="grid gap-10 sm:grid-cols-[1.4fr_1fr_1fr]"><div><p class="text-ink flex items-center gap-2.5 text-[17px] font-semibold"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="28" height="28" aria-hidden="true"><defs><linearGradient id="ps-grad-xmnd4f" x1="72" y1="16" x2="111" y2="112" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#49c3bd"></stop><stop offset="1" stop-color="#2aa8a6"></stop></linearGradient></defs><path d="M56 18 22 34v27c0 25 13.5 45 34 56" fill="none" stroke="var(--logo-left, #123456)" stroke-width="11.5"></path><path d="M72 18 106 34v27c0 25-13.5 45-34 56" fill="none" stroke="url(#ps-grad-xmnd4f)" stroke-width="11.5"></path><rect x="48" y="51" width="12" height="34" rx="3.5" fill="var(--logo-bars, #0b1b34)"></rect><rect x="68" y="51" width="12" height="34" rx="3.5" fill="var(--logo-bars, #0b1b34)"></rect></svg> Purestate</p><p class="text-soft mt-3 max-w-xs text-[15px]">Werkzeug zur freiwilligen digitalen Selbstbeschränkung für Windows. Alle Verarbeitung erfolgt lokal auf deinem Gerät.</p></div><nav aria-label="Produkt"><h2 class="mono-label">Produkt</h2><ul class="mt-3 space-y-2 text-[15px]"><li><a class="text-soft hover:text-ink" href="/funktionen/">Funktionen</a></li><li><a class="text-soft hover:text-ink" href="/so-funktioniert-es/">So funktioniert es</a></li><li><a class="text-soft hover:text-ink" href="/privatsphaere/">Privatsphäre</a></li><li><a class="text-soft hover:text-ink" href="/changelog/">Changelog</a></li><li><a class="text-soft hover:text-ink" href="/beta/">Beta &amp; Installation</a></li><li><a class="text-soft hover:text-ink" href="/hilfe/">Hilfe</a></li></ul></nav><nav aria-label="Rechtliches"><h2 class="mono-label">Rechtliches</h2><ul class="mt-3 space-y-2 text-[15px]"><li><a class="text-soft hover:text-ink" href="/datenschutz/">Datenschutz</a></li><li><a class="text-soft hover:text-ink" href="/impressum/">Impressum</a></li><li><a class="text-soft hover:text-ink" href="/beta-hinweise/">Beta-Hinweise</a></li><li><a class="text-soft hover:text-ink" href="mailto:purestateapp@gmail.com">Kontakt</a></li></ul></nav></div><div class="text-faint flex flex-wrap items-center gap-x-4 gap-y-2 text-[14px] border-line mt-10 border-t pt-6"><span>© 2026 Purestate · Freiwillige Selbstbeschränkung, lokal auf deinem Gerät.</span><span class="font-mono text-[12.5px] tracking-[0.08em]">Geschlossene Beta · v0.62.46</span></div></div></footer><script>
+      (function () {
+        const root = document.documentElement;
+        const toggle = document.getElementById('themeToggle');
+        if (toggle) {
+          toggle.addEventListener('click', function () {
+            let current = root.getAttribute('data-theme');
+            if (!current) {
+              current = window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+            }
+            const next = current === 'dark' ? 'light' : 'dark';
+            root.setAttribute('data-theme', next);
+            try {
+              localStorage.setItem('purestate-theme', next);
+            } catch {
+              /* not persisted */
+            }
+          });
+        }
+
+        const navBtn = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        if (navBtn && navMenu) {
+          navBtn.addEventListener('click', function () {
+            const open = navBtn.getAttribute('aria-expanded') === 'true';
+            navBtn.setAttribute('aria-expanded', String(!open));
+            navMenu.classList.toggle('hidden', open);
+          });
+          navMenu.querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', function () {
+              navBtn.setAttribute('aria-expanded', 'false');
+              navMenu.classList.add('hidden');
+            });
+          });
+        }
+      })();
+    </script></body></html>

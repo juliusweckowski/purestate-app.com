@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "version": "0.62.82",
+  "date": "2026-10-08",
+  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.82.zip",
+  "zipSize": 1269795,
+  "zipSha256": "220b99a6909d07079a4044def9a088c4b3690c053f99e07fdf2f74f0cd4f7663",
+  "notes": "\u2022 Purestate meldet neue Versionen.\n\u2022 Ein Klick f\u00fchrt bis zum Installer.\n\u2022 Nur der Betreiber kann Updates ausliefern.\n\u2022 Nach einem Update l\u00e4uft der Tray wieder.\n\u2022 \u201eZur neuen Fassung\u201c bietet das Update an.\n\u2022 Kurze Kn\u00f6pfe sind nicht mehr abgeschnitten."
+}

@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "0.62.83",
-  "date": "2026-10-12",
-  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.83.zip",
-  "zipSize": 1272274,
-  "zipSha256": "d2372b23102f7ed2ac34f0e236f881a2495b7de2ec918acdf57c61b253eca4c9",
-  "notes": "\u2022 Spiele: die Restzeit meldet sich alle 15 Minuten.\n\u2022 League of Legends und VALORANT werden erkannt.\n\u2022 itaobuy.com gilt als Shop."
+  "version": "0.62.84",
+  "date": "2026-10-21",
+  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.84.zip",
+  "zipSize": 1276119,
+  "zipSha256": "fbddf6aa6a33bcad18d519b0136cb5cc32523dc7eb7940714e273d8682554dae",
+  "notes": "\u2022 Das Restzeit-Abzeichen kommt auch dann, wenn Windows die alte Aufgabe nicht mehr ersetzt.\n\u2022 Das Abzeichen st\u00fcrzt ohne Datei nicht mehr ab.\n\u2022 GMX und WEB.DE gelten nicht mehr als Gl\u00fccksspielseiten."
 }

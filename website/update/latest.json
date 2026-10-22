@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "0.62.84",
-  "date": "2026-10-21",
-  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.84.zip",
-  "zipSize": 1276119,
-  "zipSha256": "fbddf6aa6a33bcad18d519b0136cb5cc32523dc7eb7940714e273d8682554dae",
-  "notes": "\u2022 Das Restzeit-Abzeichen kommt auch dann, wenn Windows die alte Aufgabe nicht mehr ersetzt.\n\u2022 Das Abzeichen st\u00fcrzt ohne Datei nicht mehr ab.\n\u2022 GMX und WEB.DE gelten nicht mehr als Gl\u00fccksspielseiten."
+  "version": "0.62.85",
+  "date": "2026-10-23",
+  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.85.zip",
+  "zipSize": 1278329,
+  "zipSha256": "6202ffaed36433b9112ef26c8194d61bb211c2496e7600870c6500c117dd0db7",
+  "notes": "\u2022 Das Tageslimit f\u00fcr Shopping und Gl\u00fccksspiel z\u00e4hlt jetzt im W\u00e4chter.\n\u2022 Chrome schlie\u00dft sich bei einem Durchlauf h\u00f6chstens einmal.\n\u2022 Ein Companion-Update im laufenden Chrome l\u00f6st keinen Fehlalarm mehr aus.\n\u2022 Der Herzschlag des Companions geht nicht mehr verloren, wenn mehrere Meldungen zugleich ankommen."
 }

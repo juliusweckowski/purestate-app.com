@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "0.62.85",
-  "date": "2026-10-23",
-  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.85.zip",
-  "zipSize": 1278329,
-  "zipSha256": "6202ffaed36433b9112ef26c8194d61bb211c2496e7600870c6500c117dd0db7",
-  "notes": "\u2022 Das Tageslimit f\u00fcr Shopping und Gl\u00fccksspiel z\u00e4hlt jetzt im W\u00e4chter.\n\u2022 Chrome schlie\u00dft sich bei einem Durchlauf h\u00f6chstens einmal.\n\u2022 Ein Companion-Update im laufenden Chrome l\u00f6st keinen Fehlalarm mehr aus.\n\u2022 Der Herzschlag des Companions geht nicht mehr verloren, wenn mehrere Meldungen zugleich ankommen."
+  "version": "0.62.86",
+  "date": "2026-10-26",
+  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.86.zip",
+  "zipSize": 1286669,
+  "zipSha256": "1a2901355512159b38349a830b2c3f7504780e2b5f8ea5565991aaa093459028",
+  "notes": "\u2022 Watchdog, Abzeichen und Browser-Neustart laufen auch im Akkubetrieb.\n\u2022 Ein Tag z\u00e4hlt von 4 Uhr bis 4 Uhr.\n\u2022 Gesch\u00fctzte Programme gelten nicht mehr als beendet, solange sie laufen."
 }

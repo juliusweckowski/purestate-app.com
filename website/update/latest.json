@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "0.62.86",
-  "date": "2026-10-26",
-  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.86.zip",
-  "zipSize": 1286669,
-  "zipSha256": "1a2901355512159b38349a830b2c3f7504780e2b5f8ea5565991aaa093459028",
-  "notes": "\u2022 Watchdog, Abzeichen und Browser-Neustart laufen auch im Akkubetrieb.\n\u2022 Ein Tag z\u00e4hlt von 4 Uhr bis 4 Uhr.\n\u2022 Gesch\u00fctzte Programme gelten nicht mehr als beendet, solange sie laufen."
+  "version": "0.62.87",
+  "date": "2026-10-27",
+  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.87.zip",
+  "zipSize": 1303573,
+  "zipSha256": "d3fefe32446fd1b85fd254ca574abd4285f734b70888a0d8eed605f85088cf8e",
+  "notes": "\u2022 Sperrzeiten pro Abend.\n\u2022 Ein l\u00e4ngeres, aber verschobenes Sperrfenster gilt als Lockerung.\n\u2022 Einschalten ohne Wartefrist."
 }

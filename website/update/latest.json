@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "0.62.87",
-  "date": "2026-10-27",
-  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.87.zip",
-  "zipSize": 1303573,
-  "zipSha256": "d3fefe32446fd1b85fd254ca574abd4285f734b70888a0d8eed605f85088cf8e",
-  "notes": "\u2022 Sperrzeiten pro Abend.\n\u2022 Ein l\u00e4ngeres, aber verschobenes Sperrfenster gilt als Lockerung.\n\u2022 Einschalten ohne Wartefrist."
+  "version": "0.62.88",
+  "date": "2026-10-28",
+  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.88.zip",
+  "zipSize": 1309539,
+  "zipSha256": "ea95d6c2e6c021d40001117c716637e7d6184fb83343fa381dc09dca6b4130e4",
+  "notes": "\u2022 Scharf bei 125, 150 und 200 %.\n\u2022 Auswahlfelder zeigen die Buchstaben ganz."
 }

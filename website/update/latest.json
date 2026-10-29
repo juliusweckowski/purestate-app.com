@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "0.62.88",
-  "date": "2026-10-28",
-  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.88.zip",
-  "zipSize": 1309539,
-  "zipSha256": "ea95d6c2e6c021d40001117c716637e7d6184fb83343fa381dc09dca6b4130e4",
-  "notes": "\u2022 Scharf bei 125, 150 und 200 %.\n\u2022 Auswahlfelder zeigen die Buchstaben ganz."
+  "version": "0.62.89",
+  "date": "2026-10-29",
+  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.89.zip",
+  "zipSize": 1310376,
+  "zipSha256": "7b8003702aa6333ecfebd1579664d4c970ad5880bdcc242e0284b41f05ba734b",
+  "notes": "\u2022 Langsames Beenden l\u00e4sst den Browser nicht geschlossen zur\u00fcck.\n\u2022 Mehrere Fenster und ihre Tabs bleiben wiederherstellbar."
 }

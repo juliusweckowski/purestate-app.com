@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "0.62.89",
-  "date": "2026-10-29",
-  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.89.zip",
-  "zipSize": 1310376,
-  "zipSha256": "7b8003702aa6333ecfebd1579664d4c970ad5880bdcc242e0284b41f05ba734b",
-  "notes": "\u2022 Langsames Beenden l\u00e4sst den Browser nicht geschlossen zur\u00fcck.\n\u2022 Mehrere Fenster und ihre Tabs bleiben wiederherstellbar."
+  "version": "0.62.90",
+  "date": "2026-11-03",
+  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.90.zip",
+  "zipSize": 1372566,
+  "zipSha256": "d2b5c2d1a5d35f0745dfd323127fd1fbfa3415b614dd82f34b6d48a92b35efcd",
+  "notes": "\u2022 Limits gemeinsam auf mehreren Ger\u00e4ten.\n\u2022 Der Server kann die Z\u00e4hler nicht lesen.\n\u2022 Ausschalten bleibt eine Lockerung."
 }

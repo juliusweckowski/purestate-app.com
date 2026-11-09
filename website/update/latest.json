@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "0.62.90",
-  "date": "2026-11-03",
-  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.90.zip",
-  "zipSize": 1372566,
-  "zipSha256": "d2b5c2d1a5d35f0745dfd323127fd1fbfa3415b614dd82f34b6d48a92b35efcd",
-  "notes": "\u2022 Limits gemeinsam auf mehreren Ger\u00e4ten.\n\u2022 Der Server kann die Z\u00e4hler nicht lesen.\n\u2022 Ausschalten bleibt eine Lockerung."
+  "version": "0.62.91",
+  "date": "2026-11-09",
+  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.91.zip",
+  "zipSize": 1376351,
+  "zipSha256": "d10f9b09b8088d268409b3eca572d83fbaab75913304a924930c1773ad12f7e8",
+  "notes": "\u2022 Tageslimit gibt nach dem Budgetwechsel wieder frei.\n\u2022 Eigene und fremde Minuten bleiben getrennt."
 }

@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "0.62.91",
-  "date": "2026-11-09",
-  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.91.zip",
-  "zipSize": 1376351,
-  "zipSha256": "d10f9b09b8088d268409b3eca572d83fbaab75913304a924930c1773ad12f7e8",
-  "notes": "\u2022 Tageslimit gibt nach dem Budgetwechsel wieder frei.\n\u2022 Eigene und fremde Minuten bleiben getrennt."
+  "version": "0.62.92",
+  "date": "2026-11-12",
+  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.92.zip",
+  "zipSize": 1380656,
+  "zipSha256": "e32232d1231dfa07fe18a7cbb6e43dfa62055966a40c523061de1277220ba0dd",
+  "notes": "\u2022 Gemeinsamer Verbrauch mit Restbudget.\n\u2022 Die Anzeige h\u00e4lt sich selbst aktuell."
 }

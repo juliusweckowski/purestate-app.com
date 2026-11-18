@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "0.62.92",
-  "date": "2026-11-12",
-  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.92.zip",
-  "zipSize": 1380656,
-  "zipSha256": "e32232d1231dfa07fe18a7cbb6e43dfa62055966a40c523061de1277220ba0dd",
-  "notes": "\u2022 Gemeinsamer Verbrauch mit Restbudget.\n\u2022 Die Anzeige h\u00e4lt sich selbst aktuell."
+  "version": "0.62.98",
+  "date": "2026-11-18",
+  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.98.zip",
+  "zipSize": 1435803,
+  "zipSha256": "66207497edd04b5c5733b0af5b3e8a52e5a214559390872a892a53c28114abf3",
+  "notes": "\u2022 Lernmodus.\n\u2022 Zeit z\u00e4hlt auch ohne Fokus.\n\u2022 Gef\u00fchrte Einrichtung und Abgleichbericht."
 }

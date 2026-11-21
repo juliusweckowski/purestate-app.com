@@ -1,9 +1,9 @@
 {
   "schema": 1,
-  "version": "0.62.98",
-  "date": "2026-11-18",
-  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.98.zip",
-  "zipSize": 1435803,
-  "zipSha256": "66207497edd04b5c5733b0af5b3e8a52e5a214559390872a892a53c28114abf3",
-  "notes": "\u2022 Lernmodus.\n\u2022 Zeit z\u00e4hlt auch ohne Fokus.\n\u2022 Gef\u00fchrte Einrichtung und Abgleichbericht."
+  "version": "0.62.99",
+  "date": "2026-11-21",
+  "zipUrl": "https://purestate-app.com/update/Purestate-Windows-v0.62.99.zip",
+  "zipSize": 1444048,
+  "zipSha256": "26c566d4935463e1d2e83ccf48e243b2769c8b1b2fe5379de173558c0201006a",
+  "notes": "\u2022 Lernmodus auf allen gekoppelten Ger\u00e4ten."
 }
